@@ -1,0 +1,169 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../control/controllers/login_controller.dart';
+import '../../theme.dart';
+import '../widget/backContainer.dart';
+import '../widget/text_form_field.dart';
+
+class LoginScreen extends GetView<LoginController> {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var mq = MediaQuery.of(context);
+    return Scaffold(
+      backgroundColor: solidBackground,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Form(
+            key: controller.loginFormKey,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Text(
+                    'اسم التطبيق هنا',
+                    style: headingStyle,
+                  ),
+                  SizedBox(
+                    height:
+                        (mq.size.height - mq.padding.top - mq.padding.bottom) *
+                            0.02,
+                  ),
+                  backContainer(
+                    height:
+                        (mq.size.height - mq.padding.top - mq.padding.bottom) *
+                            0.58,
+                    child: LayoutBuilder(builder: (ctx, constraints) {
+                      var spaceBettween = (constraints.maxHeight - 40) * 0.06;
+                      return SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Container(
+                                padding: const EdgeInsets.only(right: 8),
+                                child: Text(
+                                  'تسجيل الدخول',
+                                  style: headingStyle,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: spaceBettween,
+                            ),
+                            customTextFormField(
+                              controller: controller.emailController,
+                              onSaved: (value) => controller.email = value!,
+                              validator: (emailInput) =>
+                                  controller.validateEmail(emailInput!),
+                              hintText: 'الرجاء إدخال البريد الالكتروني',
+                              labelText: 'البريد الالكتروني',
+                              prefixIcon: null,
+                              suffixIcon: null,
+                              obscureText: false,
+                              keyboardType: TextInputType.emailAddress,
+                              width: 350,
+                            ),
+                            SizedBox(
+                              height: spaceBettween,
+                            ),
+                            customTextFormField(
+                              controller: controller.passowrdController,
+                              onSaved: (value) => controller.password = value!,
+                              validator: (passwordInput) =>
+                                  controller.validatePassword(passwordInput!),
+                              hintText: 'الرجاء إدخال كلمة المرر',
+                              labelText: 'كلمة المرور',
+                              prefixIcon: const Icon(
+                                Icons.lock,
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.remove_red_eye,
+                                ),
+                              ),
+                              keyboardType: TextInputType.visiblePassword,
+                              obscureText: controller.obscureText.value,
+                              width: 350,
+                            ),
+                            SizedBox(
+                              height: spaceBettween,
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: TextButton(
+                                  onPressed: null,
+                                  child: Text(
+                                    'نسيت كلمة المرور',
+                                    style:
+                                        body2Style.copyWith(color: Colors.blue),
+                                  )),
+                            ),
+                            SizedBox(
+                              height: spaceBettween,
+                            ),
+                            ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      buttonAndSelectedItem),
+                                  padding: MaterialStateProperty.all(
+                                      const EdgeInsets.all(10)),
+                                ),
+                                onPressed: () {
+                                  controller.doLogin();
+                                },
+                                child: Text(
+                                  "تسجيل الدخول",
+                                  style: buttonStyle,
+                                ))
+                          ],
+                        ),
+                      );
+                    }),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      'تسجيل الدخول بواسطة',
+                      style: body2Style,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.network(
+                          'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_"G"_Logo.svg/2048px-Google_"G"_Logo.svg.png',
+                          width: 48,
+                          height: 48,
+                          fit: BoxFit.cover),
+                      Image.network(
+                          'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/1024px-Facebook_icon_2013.svg.png',
+                          width: 48,
+                          height: 48,
+                          fit: BoxFit.cover),
+                    ],
+                  ),
+                  Text(
+                    'ليس لدي حساب؟',
+                    style: body2Style,
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'إنشاء حساب',
+                      style: body2Style.copyWith(color: Colors.blue),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
