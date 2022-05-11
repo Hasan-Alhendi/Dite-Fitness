@@ -8,6 +8,9 @@ import '../../routes.dart';
 
 class RegisterController extends GetxController {
   var isLoding = false.obs;
+  var obscureText = true.obs;
+  var iconPassword = Icon(Icons.visibility).obs;
+
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
   late TextEditingController emailController,
       passowrdController,
