@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
+import '../../model/classes/user_model.dart';
 import '../../model/servises/auth_services.dart';
 import '../../routes.dart';
 
@@ -58,15 +59,18 @@ class RegisterController extends GetxController {
     if (isValidate) {
       isLoding.value = true; //  isLoding(true);
       try {
-        var data = await AuthServices.register(
-            email: emailController.text, password: passowrdController.text);
-
+        User data = await AuthServices.register(
+          email: emailController.text,
+          password: passowrdController.text,
+          confirmPassword: confirmPasswordController.text,
+        );
+        print(email + "      " + password + "    " + confirmPassword);
         if (data != null) {
           await storage.write(key: 'token', value: data.token);
 
           registerFormKey.currentState!.save();
 //TODO bottombar
-          Get.toNamed(Routes.splash);
+          Get.toNamed(Routes.register);
         } else {
           Get.snackbar('regiser', 'this is problem');
         }

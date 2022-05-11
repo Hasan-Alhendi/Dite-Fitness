@@ -121,7 +121,9 @@ class RegisterScreen extends GetView<RegisterController> {
                                   padding: MaterialStateProperty.all(
                                       const EdgeInsets.all(10)),
                                 ),
-                                onPressed: null,
+                                onPressed: () {
+                                  controller.doRegister();
+                                },
                                 child: Text(
                                   "انشاء حساب",
                                   style: buttonStyle,
