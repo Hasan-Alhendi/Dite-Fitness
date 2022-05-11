@@ -8,6 +8,8 @@ import '../../routes.dart';
 class LoginController extends GetxController {
   var isLoding = false.obs;
   var obscureText = true.obs;
+  var iconPassword = Icon(Icons.visibility).obs;
+
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   late TextEditingController nameController,
       emailController,
@@ -28,21 +30,21 @@ class LoginController extends GetxController {
     super.dispose();
   }
 
-  String? validateEmail(String emailInput) {
+  /* String? validateEmail(String emailInput) {
     if (!GetUtils.isEmail(emailInput)) {
-      return "This is worng email";
+      return "ايميل غير صالح";
     } else {
       return null;
     }
-  }
+  } */
 
-  String? validatePassword(String passwordInput) {
+  /* String? validatePassword(String passwordInput) {
     if (passwordInput.length < 5) {
-      return "This is week password";
+      return "كلمة المرور ضعيفة";
     } else {
       return null;
     }
-  }
+  } */
 
   doLogin() async {
     bool isValidate = loginFormKey.currentState!.validate();

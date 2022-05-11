@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/login_controller.dart';
+import '../../routes.dart';
 import '../../theme.dart';
 import '../widget/backContainer.dart';
 import '../widget/text_form_field.dart';
@@ -16,7 +17,8 @@ class LoginScreen extends GetView<LoginController> {
       backgroundColor: solidBackground,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.only(
+              top: 8.0, bottom: 8.0, left: 16.0, right: 16.0),
           child: Form(
             key: controller.loginFormKey,
             child: SingleChildScrollView(
@@ -56,8 +58,10 @@ class LoginScreen extends GetView<LoginController> {
                             customTextFormField(
                               controller: controller.emailController,
                               onSaved: (value) => controller.email = value!,
-                              validator: (emailInput) =>
-                                  controller.validateEmail(emailInput!),
+                              validator:
+                                  null /* (emailInput) =>
+                                  controller.validateEmail(emailInput!) */
+                              ,
                               hintText: 'الرجاء إدخال البريد الالكتروني',
                               labelText: 'البريد الالكتروني',
                               prefixIcon: null,
@@ -69,25 +73,36 @@ class LoginScreen extends GetView<LoginController> {
                             SizedBox(
                               height: spaceBettween,
                             ),
-                            customTextFormField(
-                              controller: controller.passowrdController,
-                              onSaved: (value) => controller.password = value!,
-                              validator: (passwordInput) =>
-                                  controller.validatePassword(passwordInput!),
-                              hintText: 'الرجاء إدخال كلمة المرر',
-                              labelText: 'كلمة المرور',
-                              prefixIcon: const Icon(
-                                Icons.lock,
-                              ),
-                              suffixIcon: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.remove_red_eye,
+                            Obx(
+                              () => customTextFormField(
+                                controller: controller.passowrdController,
+                                onSaved: (value) =>
+                                    controller.password = value!,
+                                validator:
+                                    null /* (passwordInput) =>
+                                    controller.validatePassword(passwordInput!) */
+                                ,
+                                hintText: 'الرجاء إدخال كلمة المرر',
+                                labelText: 'كلمة المرور',
+                                prefixIcon: const Icon(
+                                  Icons.lock,
                                 ),
+                                suffixIcon: IconButton(
+                                    onPressed: () {
+                                      controller.obscureText.value =
+                                          !controller.obscureText.value;
+
+                                      controller.obscureText.value
+                                          ? controller.iconPassword.value =
+                                              Icon(Icons.visibility)
+                                          : controller.iconPassword.value =
+                                              Icon(Icons.visibility_off);
+                                    },
+                                    icon: controller.iconPassword.value),
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: controller.obscureText.value,
+                                width: 350,
                               ),
-                              keyboardType: TextInputType.visiblePassword,
-                              obscureText: controller.obscureText.value,
-                              width: 350,
                             ),
                             SizedBox(
                               height: spaceBettween,
@@ -152,7 +167,9 @@ class LoginScreen extends GetView<LoginController> {
                     style: body2Style,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.offNamed(Routes.register);
+                    },
                     child: Text(
                       'إنشاء حساب',
                       style: body2Style.copyWith(color: Colors.blue),

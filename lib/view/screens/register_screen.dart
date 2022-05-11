@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/register_controller.dart';
+import '../../routes.dart';
 import '../../theme.dart';
 import '../widget/backContainer.dart';
 import '../widget/text_form_field.dart';
@@ -73,43 +74,67 @@ class RegisterScreen extends GetView<RegisterController> {
                             SizedBox(
                               height: spaceBettween,
                             ),
-                            customTextFormField(
-                              controller: controller.passowrdController,
-                              onSaved: (value) => controller.password = value!,
-                              validator: (passwordInput) =>
-                                  controller.validatePassword(passwordInput!),
-                              hintText: 'الرجاء إدخال كلمة المرر',
-                              labelText: 'كلمة المرور',
-                              prefixIcon: const Icon(
-                                Icons.lock,
+                            Obx(
+                              () => customTextFormField(
+                                controller: controller.passowrdController,
+                                onSaved: (value) =>
+                                    controller.password = value!,
+                                validator: (passwordInput) =>
+                                    controller.validatePassword(passwordInput!),
+                                hintText: 'الرجاء إدخال كلمة المرر',
+                                labelText: 'كلمة المرور',
+                                prefixIcon: const Icon(
+                                  Icons.lock,
+                                ),
+                                suffixIcon: IconButton(
+                                    onPressed: () {
+                                      controller.obscureText.value =
+                                          !controller.obscureText.value;
+
+                                      controller.obscureText.value
+                                          ? controller.iconPassword.value =
+                                              Icon(Icons.visibility)
+                                          : controller.iconPassword.value =
+                                              Icon(Icons.visibility_off);
+                                    },
+                                    icon: controller.iconPassword.value),
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: controller.obscureText.value,
+                                width: 350,
                               ),
-                              suffixIcon: const Icon(
-                                Icons.remove_red_eye,
-                              ),
-                              keyboardType: TextInputType.visiblePassword,
-                              obscureText: true,
-                              width: 350,
                             ),
                             SizedBox(
                               height: spaceBettween,
                             ),
-                            customTextFormField(
-                              controller: controller.confirmPasswordController,
-                              onSaved: (value) =>
-                                  controller.confirmPassword = value!,
-                              validator: (passwordInput) => controller
-                                  .validateConfirmPassword(passwordInput!),
-                              hintText: 'الرجاء تأكيد كلمة المرر',
-                              labelText: 'تأكيد كلمة المرور',
-                              prefixIcon: const Icon(
-                                Icons.lock,
+                            Obx(
+                              () => customTextFormField(
+                                controller:
+                                    controller.confirmPasswordController,
+                                onSaved: (value) =>
+                                    controller.confirmPassword = value!,
+                                validator: (passwordInput) => controller
+                                    .validateConfirmPassword(passwordInput!),
+                                hintText: 'الرجاء تأكيد كلمة المرر',
+                                labelText: 'تأكيد كلمة المرور',
+                                prefixIcon: const Icon(
+                                  Icons.lock,
+                                ),
+                                suffixIcon: IconButton(
+                                    onPressed: () {
+                                      controller.obscureText.value =
+                                          !controller.obscureText.value;
+
+                                      controller.obscureText.value
+                                          ? controller.iconPassword.value =
+                                              Icon(Icons.visibility)
+                                          : controller.iconPassword.value =
+                                              Icon(Icons.visibility_off);
+                                    },
+                                    icon: controller.iconPassword.value),
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: controller.obscureText.value,
+                                width: 350,
                               ),
-                              suffixIcon: const Icon(
-                                Icons.remove_red_eye,
-                              ),
-                              keyboardType: TextInputType.visiblePassword,
-                              obscureText: true,
-                              width: 350,
                             ),
                             SizedBox(
                               height: spaceBettween,
@@ -161,7 +186,9 @@ class RegisterScreen extends GetView<RegisterController> {
                     style: body2Style,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.offNamed(Routes.login);
+                    },
                     child: Text(
                       'تسجيل الدخول',
                       style: body2Style.copyWith(color: Colors.blue),
