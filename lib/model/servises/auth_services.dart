@@ -55,7 +55,6 @@ class AuthServices {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map valueMap = jsonDecode(response.body);
-      print(valueMap);
       var user = valueMap["User"];
       User s = User.fromJson(user);
       return s;

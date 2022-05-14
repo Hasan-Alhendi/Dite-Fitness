@@ -69,7 +69,7 @@ class RegisterController extends GetxController {
         );
         print(email + "      " + password + "    " + confirmPassword);
         if (data != null) {
-          await storage.write(key: 'token', value: data.token);
+          await storage.write(key: 'token', value: data.api_Token);
 
           registerFormKey.currentState!.save();
 //TODO bottombar
