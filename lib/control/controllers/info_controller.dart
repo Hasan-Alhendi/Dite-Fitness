@@ -16,21 +16,16 @@ class InfoController extends GetxController {
       heightController,
       wightController,
       birthDateController;
-  //  genderController;
-  String firstName = '', lastName = '', gender = '';
+  String firstName = '', lastName = '';
   int height = 0, wight = 0;
   DateTime birthDate = DateTime.now();
   var id = Get.arguments;
-
-  final token = const FlutterSecureStorage().read(key: 'token');
-  // final   token = storage.read(key: 'token');
 
   @override
   void onInit() {
     firstNameController = TextEditingController();
     lastNameController = TextEditingController();
     heightController = TextEditingController();
-    // genderController = TextEditingController();
     birthDateController = TextEditingController();
     wightController = TextEditingController();
     super.onInit();
@@ -41,19 +36,20 @@ class InfoController extends GetxController {
     firstNameController.dispose();
     lastNameController.dispose();
     heightController.dispose();
-    // genderController.dispose();
     birthDateController.dispose();
     wightController.dispose();
     super.dispose();
   }
 
   updateInfo() async {
+    final token = const FlutterSecureStorage();
+    String? api_Token = await token.read(key: 'token');
     bool isValidate = infoFormKey.currentState!.validate();
     if (isValidate) {
       isLoding.value = true; //  isLoding(true);
       try {
         await InfoServises.updateInfo(
-            api_Token: token,
+            api_Token: api_Token,
             id: id,
             birth_date: selectedDate.value.toIso8601String(),
             first_name: firstNameController.text,
@@ -65,7 +61,7 @@ class InfoController extends GetxController {
 
         infoFormKey.currentState!.save();
 //TODO bottombar
-        Get.toNamed(Routes.aim);
+        Get.toNamed(Routes.goal, arguments: id);
       } finally {
         isLoding(false);
       }

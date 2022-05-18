@@ -49,7 +49,7 @@ class LoginController extends GetxController {
     if (isValidate) {
       isLoding.value = true; //  isLoding(true);
       try {
-        User data = await AuthServices.login(
+        User? data = await AuthServices.login(
             email: emailController.text, password: passowrdController.text);
 
         if (data != null) {

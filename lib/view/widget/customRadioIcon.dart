@@ -15,7 +15,6 @@ Widget customRadioIcon({
   return ElevatedButton.icon(
     onPressed: () {
       controller.selectedIndex.value = index;
-      print(index);
     },
     icon: Icon(
       icon,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../control/controllers/aim_controller.dart';
+import '../../control/controllers/goal_controller.dart';
 import '../../routes.dart';
 import '../../theme.dart';
 import '../widget/backContainer.dart';
@@ -9,7 +9,7 @@ import '../widget/backbutton.dart';
 import '../widget/customRadio.dart';
 import '../widget/nextbutton.dart';
 
-class AimScreen extends GetView<AimController> {
+class GoalScreen extends GetView<GoalController> {
   Widget build(BuildContext context) {
     var mq = MediaQuery.of(context);
     var culomnSpace = 20.0;
@@ -32,15 +32,39 @@ class AimScreen extends GetView<AimController> {
                           0.75,
                   child: Column(
                     children: [
-                      customRadio(label: 'زيادة الوزن'),
+                      Obx(
+                        () => customRadio(
+                          label: 'زيادة الوزن',
+                          index: 1,
+                          color: controller.selectedIndex.value == 1
+                              ? buttonAndSelectedItem
+                              : textFormFiled,
+                        ),
+                      ),
                       SizedBox(
                         height: culomnSpace,
                       ),
-                      customRadio(label: 'نقصان الوزن'),
+                      Obx(
+                        () => customRadio(
+                          label: 'نقصان الوزن',
+                          index: 2,
+                          color: controller.selectedIndex.value == 2
+                              ? buttonAndSelectedItem
+                              : textFormFiled,
+                        ),
+                      ),
                       SizedBox(
                         height: culomnSpace,
                       ),
-                      customRadio(label: 'الحفاظ على الوزن'),
+                      Obx(
+                        () => customRadio(
+                          label: 'الحفاظ على الوزن',
+                          index: 3,
+                          color: controller.selectedIndex.value == 3
+                              ? buttonAndSelectedItem
+                              : textFormFiled,
+                        ),
+                      ),
                       SizedBox(
                         height: culomnSpace,
                       ),
@@ -53,7 +77,11 @@ class AimScreen extends GetView<AimController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          nextButton(label: "التالي", onPressed: () {}),
+                          nextButton(
+                              label: "التالي",
+                              onPressed: () {
+                                controller.setGoal();
+                              }),
                           backButton(onPressed: () {
                             Get.toNamed(Routes.info);
                           }),

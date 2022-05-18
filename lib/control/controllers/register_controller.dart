@@ -62,7 +62,7 @@ class RegisterController extends GetxController {
     if (isValidate) {
       isLoding.value = true; //  isLoding(true);
       try {
-        User data = await AuthServices.register(
+        User? data = await AuthServices.register(
           email: emailController.text,
           password: passowrdController.text,
           confirmPassword: confirmPasswordController.text,
