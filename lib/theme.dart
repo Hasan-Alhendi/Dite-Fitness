@@ -6,6 +6,7 @@ const Color textFormFiled = Color.fromRGBO(54, 30, 115, 1);
 const Color textButtonColor = Color.fromARGB(255, 41, 1, 142);
 const Color container = Color.fromRGBO(51, 27, 80, 1);
 const Color borderCard = Color.fromRGBO(75, 39, 118, 1);
+const Color borderCard1 = Color.fromRGBO(129, 135, 253, .25);
 const Color hint = Color.fromRGBO(150, 167, 175, 1);
 const Color buttonAndSelectedItem = Color.fromRGBO(86, 90, 250, 1);
 const Color white = Colors.white;

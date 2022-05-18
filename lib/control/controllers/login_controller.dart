@@ -11,9 +11,7 @@ class LoginController extends GetxController {
   var iconPassword = Icon(Icons.visibility).obs;
 
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-  late TextEditingController nameController,
-      emailController,
-      passowrdController;
+  late TextEditingController emailController, passowrdController;
   String email = '', password = '';
   final storage = const FlutterSecureStorage();
   @override
@@ -51,15 +49,16 @@ class LoginController extends GetxController {
     if (isValidate) {
       isLoding.value = true; //  isLoding(true);
       try {
-        User data = await AuthServices.login(
+        User? data = await AuthServices.login(
             email: emailController.text, password: passowrdController.text);
 
         if (data != null) {
-          await storage.write(key: 'token', value: data.token);
-          print(data.token);
+          await storage.write(key: 'token', value: data.api_Token);
+          //print(data.token);
+          // print(await storage.read(key: 'token'));
           loginFormKey.currentState!.save();
           //TODO bottomBar
-          Get.toNamed(Routes.login);
+          Get.toNamed(Routes.info, arguments: data.id);
         } else {
           Get.snackbar('login', 'this is problem');
         }

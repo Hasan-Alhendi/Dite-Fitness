@@ -1,0 +1,501 @@
+{
+    "status": true,
+    "errNum": "S00",
+    "msg": "",
+    "diets": [
+        {
+            "id": 2,
+            "calory": 1700,
+            "model_number": 1,
+            "protien": 0,
+            "carbohydrate": 0,
+            "fats": 0,
+            "meals": [
+                {
+                    "id": 14,
+                    "diet_id": 2,
+                    "type": 1,
+                    "foods": [
+                        {
+                            "id": 1,
+                            "food_name": "بيض",
+                            "quantity": {
+                                "meal_id": 14,
+                                "food_id": 1,
+                                "count": 1,
+                                "weight": null,
+                                "unit": "بيضة ",
+                                "quantity_str": "قلي او سلق بدون زيت"
+                            }
+                        },
+                        {
+                            "id": 6,
+                            "food_name": "خيار",
+                            "quantity": {
+                                "meal_id": 14,
+                                "food_id": 6,
+                                "count": 3,
+                                "weight": null,
+                                "unit": "حبة",
+                                "quantity_str": " متوسطة الحجم"
+                            }
+                        },
+                        {
+                            "id": 9,
+                            "food_name": "خبز أبيض",
+                            "quantity": {
+                                "meal_id": 14,
+                                "food_id": 9,
+                                "count": 0.5,
+                                "weight": 160,
+                                "unit": "غرام",
+                                "quantity_str": "نصف رغيف  "
+                            }
+                        },
+                        {
+                            "id": 10,
+                            "food_name": "زيت زيتون",
+                            "quantity": {
+                                "meal_id": 14,
+                                "food_id": 10,
+                                "count": 1,
+                                "weight": null,
+                                "unit": "ملعقة ",
+                                "quantity_str": "ملعقة كبيرة وملعقة صغيرة"
+                            }
+                        },
+                        {
+                            "id": 11,
+                            "food_name": "موز",
+                            "quantity": {
+                                "meal_id": 14,
+                                "food_id": 11,
+                                "count": 1,
+                                "weight": 54,
+                                "unit": "غرام ",
+                                "quantity_str": " صغيرة 85 غرام مع القشر "
+                            }
+                        },
+                        {
+                            "id": 2,
+                            "food_name": "لبنة",
+                            "quantity": {
+                                "meal_id": 14,
+                                "food_id": 2,
+                                "count": 1,
+                                "weight": 30,
+                                "unit": "غرام ",
+                                "quantity_str": "ملعقة كبيرة "
+                            }
+                        },
+                        {
+                            "id": 5,
+                            "food_name": "مسبحة",
+                            "quantity": {
+                                "meal_id": 14,
+                                "food_id": 5,
+                                "count": 3,
+                                "weight": 42,
+                                "unit": "غرام ",
+                                "quantity_str": "ثلاث ملاعق"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": 15,
+                    "diet_id": 2,
+                    "type": 2,
+                    "foods": [
+                        {
+                            "id": 4,
+                            "food_name": "لحم عجل",
+                            "quantity": {
+                                "meal_id": 15,
+                                "food_id": 4,
+                                "count": null,
+                                "weight": 75,
+                                "unit": "غرام",
+                                "quantity_str": "يسلق أو يشوى"
+                            }
+                        },
+                        {
+                            "id": 27,
+                            "food_name": "شوربة عدس",
+                            "quantity": {
+                                "meal_id": 15,
+                                "food_id": 27,
+                                "count": 1,
+                                "weight": null,
+                                "unit": "كوب",
+                                "quantity_str": "ماء وعدس فقط مهم إضافة تصف ليمونة أو القليل من الليمون الحامض"
+                            }
+                        },
+                        {
+                            "id": 28,
+                            "food_name": "بطاطا",
+                            "quantity": {
+                                "meal_id": 15,
+                                "food_id": 28,
+                                "count": 4,
+                                "weight": 50,
+                                "unit": "غرام",
+                                "quantity_str": "أربع حبات أو واحدة تساويهم حجما (تناول cالبطاطا مع القشر يمنحك جرعة جيدة من الألياف و فيتامين  "
+                            }
+                        },
+                        {
+                            "id": 23,
+                            "food_name": "سلطة خضار",
+                            "quantity": {
+                                "meal_id": 15,
+                                "food_id": 23,
+                                "count": 1,
+                                "weight": null,
+                                "unit": "كوب",
+                                "quantity_str": "يفضل أن تحوي مزيج واسع من الخضار بمختلف ألوانها إن احتوت وجبتك على الزيت يمكنك إضافته"
+                            }
+                        },
+                        {
+                            "id": 11,
+                            "food_name": "موز",
+                            "quantity": {
+                                "meal_id": 15,
+                                "food_id": 11,
+                                "count": 1,
+                                "weight": 99,
+                                "unit": "غرام",
+                                "quantity_str": "صغيرة 155 غرام مغ القشر"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": 16,
+                    "diet_id": 2,
+                    "type": 3,
+                    "foods": [
+                        {
+                            "id": 29,
+                            "food_name": "تونا",
+                            "quantity": {
+                                "meal_id": 16,
+                                "food_id": 29,
+                                "count": 0.5,
+                                "weight": 85,
+                                "unit": "غرام",
+                                "quantity_str": "نصف علبة"
+                            }
+                        },
+                        {
+                            "id": 30,
+                            "food_name": "معكرونة",
+                            "quantity": {
+                                "meal_id": 16,
+                                "food_id": 30,
+                                "count": 1.5,
+                                "weight": 86,
+                                "unit": "غرام",
+                                "quantity_str": " كوب و نصف بعد الطهو"
+                            }
+                        },
+                        {
+                            "id": 23,
+                            "food_name": "سلطة خضار",
+                            "quantity": {
+                                "meal_id": 16,
+                                "food_id": 23,
+                                "count": 2.5,
+                                "weight": null,
+                                "unit": "كوب",
+                                "quantity_str": "يفضل أن تحوي مزيج واسع من الخضار بمختلف ألوانها إن احتوت وجبتك على الزيت يمكنك إضافته"
+                            }
+                        },
+                        {
+                            "id": 10,
+                            "food_name": "زيت زيتون",
+                            "quantity": {
+                                "meal_id": 16,
+                                "food_id": 10,
+                                "count": 2,
+                                "weight": null,
+                                "unit": "ملعقة",
+                                "quantity_str": " يمكن اضافتها لاحد مكونات الوجبة او استخدامها في طهو احد المكونات بشرط الا تتعرض لدرجة حرارة عالية"
+                            }
+                        },
+                        {
+                            "id": 11,
+                            "food_name": "موز",
+                            "quantity": {
+                                "meal_id": 16,
+                                "food_id": 11,
+                                "count": 1,
+                                "weight": 82,
+                                "unit": "غرام",
+                                "quantity_str": "صغيرة 127 غرام مغ القشر"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "calory": 1700,
+            "model_number": 2,
+            "protien": 0,
+            "carbohydrate": 0,
+            "fats": 0,
+            "meals": [
+                {
+                    "id": 17,
+                    "diet_id": 15,
+                    "type": 1,
+                    "foods": [
+                        {
+                            "id": 17,
+                            "food_name": "حليب",
+                            "quantity": {
+                                "meal_id": 17,
+                                "food_id": 17,
+                                "count": 0.5,
+                                "weight": 250,
+                                "unit": "مل",
+                                "quantity_str": "%نصف كوب دسم 2"
+                            }
+                        },
+                        {
+                            "id": 2,
+                            "food_name": "لبنة",
+                            "quantity": {
+                                "meal_id": 17,
+                                "food_id": 2,
+                                "count": 1,
+                                "weight": 30,
+                                "unit": "غرام",
+                                "quantity_str": "ملعقة كبيرة"
+                            }
+                        },
+                        {
+                            "id": 18,
+                            "food_name": "جبنة بيضاء",
+                            "quantity": {
+                                "meal_id": 17,
+                                "food_id": 18,
+                                "count": null,
+                                "weight": 25,
+                                "unit": "غرام",
+                                "quantity_str": ""
+                            }
+                        },
+                        {
+                            "id": 6,
+                            "food_name": "خيار",
+                            "quantity": {
+                                "meal_id": 17,
+                                "food_id": 6,
+                                "count": 3,
+                                "weight": null,
+                                "unit": "حبات",
+                                "quantity_str": "متوسطة الحجم"
+                            }
+                        },
+                        {
+                            "id": 9,
+                            "food_name": "خبز أبيض",
+                            "quantity": {
+                                "meal_id": 17,
+                                "food_id": 9,
+                                "count": 0.5,
+                                "weight": 80,
+                                "unit": "غرام",
+                                "quantity_str": "نصف رغيف"
+                            }
+                        },
+                        {
+                            "id": 30,
+                            "food_name": "معكرونة",
+                            "quantity": {
+                                "meal_id": 17,
+                                "food_id": 30,
+                                "count": 2,
+                                "weight": null,
+                                "unit": "ملعقة",
+                                "quantity_str": " يمكن اضافتها لاحد مكونات الوجبة او استخدامها في طهو احد المكونات بشرط الا تتعرض لدرجة حرارة عالية"
+                            }
+                        },
+                        {
+                            "id": 19,
+                            "food_name": "تفاح",
+                            "quantity": {
+                                "meal_id": 17,
+                                "food_id": 19,
+                                "count": 1,
+                                "weight": 115,
+                                "unit": "غرام",
+                                "quantity_str": "متوسطة الحجم"
+                            }
+                        },
+                        {
+                            "id": 12,
+                            "food_name": "تمر",
+                            "quantity": {
+                                "meal_id": 17,
+                                "food_id": 12,
+                                "count": 3,
+                                "weight": 8,
+                                "unit": "غرام",
+                                "quantity_str": "متوسطة الحجم"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": 18,
+                    "diet_id": 15,
+                    "type": 2,
+                    "foods": [
+                        {
+                            "id": 20,
+                            "food_name": "صدر دجاج",
+                            "quantity": {
+                                "meal_id": 18,
+                                "food_id": 20,
+                                "count": null,
+                                "weight": 75,
+                                "unit": "غرام",
+                                "quantity_str": "يسلق او يشوى"
+                            }
+                        },
+                        {
+                            "id": 21,
+                            "food_name": "عدس",
+                            "quantity": {
+                                "meal_id": 18,
+                                "food_id": 21,
+                                "count": 0.5,
+                                "weight": null,
+                                "unit": "كوب",
+                                "quantity_str": "تقاس الكمية بعد السلق يفضل نقع العدس ليلة كاملة قبل السلق"
+                            }
+                        },
+                        {
+                            "id": 22,
+                            "food_name": "برغل",
+                            "quantity": {
+                                "meal_id": 18,
+                                "food_id": 22,
+                                "count": 1.5,
+                                "weight": 67,
+                                "unit": "غرام",
+                                "quantity_str": "كوب و نصف بعد الطهو"
+                            }
+                        },
+                        {
+                            "id": 23,
+                            "food_name": "سلطة خضار",
+                            "quantity": {
+                                "meal_id": 18,
+                                "food_id": 23,
+                                "count": 1,
+                                "weight": null,
+                                "unit": "كوب",
+                                "quantity_str": "يفضل أن تحوي مزيج واسع من الخضار بمختلف ألوانها إن احتوت وجبتك على الزيت يمكنك إضافته"
+                            }
+                        },
+                        {
+                            "id": 24,
+                            "food_name": "برتقال",
+                            "quantity": {
+                                "meal_id": 18,
+                                "food_id": 24,
+                                "count": 2,
+                                "weight": 130,
+                                "unit": "غرام",
+                                "quantity_str": " متوسطة الحجم"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": 19,
+                    "diet_id": 15,
+                    "type": 3,
+                    "foods": [
+                        {
+                            "id": 3,
+                            "food_name": "كلحم غنم",
+                            "quantity": {
+                                "meal_id": 19,
+                                "food_id": 3,
+                                "count": null,
+                                "weight": 100,
+                                "unit": "غرام",
+                                "quantity_str": "يسلق او يشوى"
+                            }
+                        },
+                        {
+                            "id": 25,
+                            "food_name": "بازلاء",
+                            "quantity": {
+                                "meal_id": 19,
+                                "food_id": 25,
+                                "count": 1,
+                                "weight": null,
+                                "unit": "كوب",
+                                "quantity_str": "تقاس الكمية بعد الطهو"
+                            }
+                        },
+                        {
+                            "id": 26,
+                            "food_name": "رز أبيض",
+                            "quantity": {
+                                "meal_id": 19,
+                                "food_id": 26,
+                                "count": 1,
+                                "weight": 67,
+                                "unit": "غرام",
+                                "quantity_str": "كوب بعد الطهو"
+                            }
+                        },
+                        {
+                            "id": 23,
+                            "food_name": "سلطة خضار",
+                            "quantity": {
+                                "meal_id": 19,
+                                "food_id": 23,
+                                "count": 2.5,
+                                "weight": null,
+                                "unit": "كوب",
+                                "quantity_str": "يفضل أن تحوي مزيج واسع من الخضار بمختلف ألوانها إن احتوت وجبتك على الزيت يمكنك إضافته"
+                            }
+                        },
+                        {
+                            "id": 30,
+                            "food_name": "معكرونة",
+                            "quantity": {
+                                "meal_id": 19,
+                                "food_id": 30,
+                                "count": 2,
+                                "weight": null,
+                                "unit": "ملعقة",
+                                "quantity_str": " يمكن اضافتها لاحد مكونات الوجبة او استخدامها في طهو احد المكونات بشرط الا تتعرض لدرجة حرارة عالية"
+                            }
+                        },
+                        {
+                            "id": 19,
+                            "food_name": "تفاح",
+                            "quantity": {
+                                "meal_id": 19,
+                                "food_id": 19,
+                                "count": 1,
+                                "weight": 115,
+                                "unit": "غرام",
+                                "quantity_str": "متوسطة الحجم"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

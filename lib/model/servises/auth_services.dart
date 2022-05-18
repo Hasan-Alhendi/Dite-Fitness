@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import '../../const.dart';
 import '../classes/user_model.dart';
 
 /* class AuthServices {
@@ -36,7 +37,7 @@ import '../classes/user_model.dart';
 }
  */
 class AuthServices {
-  static String url = 'http://192.168.1.2:8000/api/user';
+  static String url = Const.urlUser;
   static http.Client client = http.Client();
 
   static register(
@@ -55,7 +56,6 @@ class AuthServices {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map valueMap = jsonDecode(response.body);
-      print(valueMap);
       var user = valueMap["User"];
       User s = User.fromJson(user);
       return s;

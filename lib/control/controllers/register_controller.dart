@@ -62,14 +62,14 @@ class RegisterController extends GetxController {
     if (isValidate) {
       isLoding.value = true; //  isLoding(true);
       try {
-        User data = await AuthServices.register(
+        User? data = await AuthServices.register(
           email: emailController.text,
           password: passowrdController.text,
           confirmPassword: confirmPasswordController.text,
         );
         print(email + "      " + password + "    " + confirmPassword);
         if (data != null) {
-          await storage.write(key: 'token', value: data.token);
+          await storage.write(key: 'token', value: data.api_Token);
 
           registerFormKey.currentState!.save();
 //TODO bottombar
