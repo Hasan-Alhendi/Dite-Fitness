@@ -8,7 +8,7 @@ import '../../routes.dart';
 class LoginController extends GetxController {
   var isLoding = false.obs;
   var obscureText = true.obs;
-  var iconPassword = Icon(Icons.visibility).obs;
+  var iconPassword = const Icon(Icons.visibility).obs;
 
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   late TextEditingController emailController, passowrdController;
@@ -53,7 +53,7 @@ class LoginController extends GetxController {
             email: emailController.text, password: passowrdController.text);
 
         if (data != null) {
-          await storage.write(key: 'token', value: data.api_Token);
+          await storage.write(key: 'token', value: data.apiToken);
           //print(data.token);
           // print(await storage.read(key: 'token'));
           loginFormKey.currentState!.save();

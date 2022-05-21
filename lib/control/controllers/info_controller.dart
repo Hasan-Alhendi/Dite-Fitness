@@ -19,7 +19,6 @@ class InfoController extends GetxController {
   String firstName = '', lastName = '';
   int height = 0, wight = 0;
   DateTime birthDate = DateTime.now();
-  var id = Get.arguments;
 
   @override
   void onInit() {
@@ -42,26 +41,25 @@ class InfoController extends GetxController {
   }
 
   updateInfo() async {
-    final token = const FlutterSecureStorage();
-    String? api_Token = await token.read(key: 'token');
+    const token = FlutterSecureStorage();
+    String? apiToken = await token.read(key: 'token');
     bool isValidate = infoFormKey.currentState!.validate();
     if (isValidate) {
       isLoding.value = true; //  isLoding(true);
       try {
         await InfoServises.updateInfo(
-            api_Token: api_Token,
-            id: id,
-            birth_date: selectedDate.value.toIso8601String(),
-            first_name: firstNameController.text,
+            apiToken: apiToken,
+            birthDate: selectedDate.value.toIso8601String(),
+            firstName: firstNameController.text,
             gender: selectedIndex.value == 1
                 ? 'ذكر'
                 : (selectedIndex.value == 2 ? 'انثى' : ''),
             height: heightController.text,
-            last_name: lastNameController.text);
+            lastName: lastNameController.text);
 
         infoFormKey.currentState!.save();
 //TODO bottombar
-        Get.toNamed(Routes.goal, arguments: id);
+        Get.toNamed(Routes.activity);
       } finally {
         isLoding(false);
       }

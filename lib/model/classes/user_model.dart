@@ -1,49 +1,49 @@
 class User {
   int? id;
   String? email;
-  String? first_name;
-  String? last_name;
+  String? firstName;
+  String? lastName;
   String? gender;
-  DateTime? birth_date;
+  DateTime? birthDate;
   int? height;
 
-  String? api_Token;
+  String? apiToken;
 
   User({
     required this.id,
     required this.email,
-    required this.first_name,
-    required this.last_name,
+    required this.firstName,
+    required this.lastName,
     required this.gender,
-    required this.birth_date,
+    required this.birthDate,
     required this.height,
-    required this.api_Token,
+    required this.apiToken,
   });
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
       'email': email,
-      'first_name': first_name,
-      'last_name': last_name,
+      'first_name': firstName,
+      'last_name': lastName,
       'gender': gender,
-      'birth_date': birth_date,
+      'birth_date': birthDate,
       'height': height,
-      'api_Token': api_Token,
+      'api_Token': apiToken,
     };
   }
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     email = json['email'];
-    first_name = json['first_name'];
-    last_name = json['last_name'];
+    firstName = json['first_name'];
+    lastName = json['last_name'];
     gender = json['gender'];
     //birth_date = json['birth_date'];
-    birth_date = DateTime.parse(json['birth_date'].toString());
-    ;
+    // birth_date = DateTime.parse(json['birth_date'].toString());
+
     height = json['height'];
-    api_Token = json['api_Token'];
+    apiToken = json['api_Token'];
   }
   int get getId {
     return id!;

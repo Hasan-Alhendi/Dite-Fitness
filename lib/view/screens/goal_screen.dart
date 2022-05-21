@@ -4,12 +4,15 @@ import 'package:get/get.dart';
 import '../../control/controllers/goal_controller.dart';
 import '../../routes.dart';
 import '../../theme.dart';
-import '../widget/backContainer.dart';
-import '../widget/backbutton.dart';
-import '../widget/customRadio.dart';
-import '../widget/nextbutton.dart';
+import '../widget/back_container.dart';
+import '../widget/back_button.dart';
+import '../widget/custom_radio.dart';
+import '../widget/next_button.dart';
 
 class GoalScreen extends GetView<GoalController> {
+  const GoalScreen({Key? key}) : super(key: key);
+
+  @override
   Widget build(BuildContext context) {
     var mq = MediaQuery.of(context);
     var culomnSpace = 20.0;
@@ -17,12 +20,12 @@ class GoalScreen extends GetView<GoalController> {
       backgroundColor: solidBackground,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 Text(
-                  'الرجاء ادخال المعلومات الشخصية التالية:',
+                  'الرجاء تحديد الهدف',
                   textDirection: TextDirection.rtl,
                   style: headingStyle,
                 ),
@@ -39,6 +42,9 @@ class GoalScreen extends GetView<GoalController> {
                           color: controller.selectedIndex.value == 1
                               ? buttonAndSelectedItem
                               : textFormFiled,
+                          onPressed: () {
+                            controller.selectedIndex.value = 1;
+                          },
                         ),
                       ),
                       SizedBox(
@@ -51,6 +57,9 @@ class GoalScreen extends GetView<GoalController> {
                           color: controller.selectedIndex.value == 2
                               ? buttonAndSelectedItem
                               : textFormFiled,
+                          onPressed: () {
+                            controller.selectedIndex.value = 2;
+                          },
                         ),
                       ),
                       SizedBox(
@@ -63,6 +72,9 @@ class GoalScreen extends GetView<GoalController> {
                           color: controller.selectedIndex.value == 3
                               ? buttonAndSelectedItem
                               : textFormFiled,
+                          onPressed: () {
+                            controller.selectedIndex.value = 3;
+                          },
                         ),
                       ),
                       SizedBox(
@@ -80,10 +92,17 @@ class GoalScreen extends GetView<GoalController> {
                           nextButton(
                               label: "التالي",
                               onPressed: () {
-                                controller.setGoal();
+                                controller.selectedIndex.value == 0
+                                    ? Get.snackbar(
+                                        'خطأ',
+                                        'الرجاء تحديد الهدف',
+                                        snackPosition: SnackPosition.BOTTOM,
+                                      )
+                                    : controller.setGoal(
+                                        goalId: controller.selectedIndex.value);
                               }),
                           backButton(onPressed: () {
-                            Get.toNamed(Routes.info);
+                            Get.toNamed(Routes.activity);
                           }),
                         ],
                       ),

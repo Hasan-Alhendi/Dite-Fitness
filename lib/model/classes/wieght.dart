@@ -1,24 +1,24 @@
-class wieght {
-  int? wight_id;
-  int? user_id;
+class Wieght {
+  int? wightId;
+  int? userId;
   int? wight;
-  wieght({
-    required this.wight_id,
-    required this.user_id,
+  Wieght({
+    required this.wightId,
+    required this.userId,
     required this.wight,
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'wight_id': wight_id,
-      'user_id': user_id,
+      'wight_id': wightId,
+      'user_id': userId,
       'wight': wight,
     };
   }
 
-  wieght.fromJson(Map<String, dynamic> json) {
-    wight_id = json['wight_id']?.toInt();
-    user_id = json['user_id']?.toInt();
+  Wieght.fromJson(Map<String, dynamic> json) {
+    wightId = json['wight_id']?.toInt();
+    userId = json['user_id']?.toInt();
     wight = json['wight']?.toInt();
   }
 }

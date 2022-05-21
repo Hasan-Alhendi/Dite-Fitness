@@ -9,7 +9,7 @@ import '../../routes.dart';
 class RegisterController extends GetxController {
   var isLoding = false.obs;
   var obscureText = true.obs;
-  var iconPassword = Icon(Icons.visibility).obs;
+  var iconPassword = const Icon(Icons.visibility).obs;
 
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
   late TextEditingController emailController,
@@ -67,9 +67,9 @@ class RegisterController extends GetxController {
           password: passowrdController.text,
           confirmPassword: confirmPasswordController.text,
         );
-        print(email + "      " + password + "    " + confirmPassword);
+        // print(email + "      " + password + "    " + confirmPassword);
         if (data != null) {
-          await storage.write(key: 'token', value: data.api_Token);
+          await storage.write(key: 'token', value: data.apiToken);
 
           registerFormKey.currentState!.save();
 //TODO bottombar

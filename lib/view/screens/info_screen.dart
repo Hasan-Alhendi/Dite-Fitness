@@ -4,21 +4,23 @@ import 'package:get/get.dart';
 
 import '../../control/controllers/info_controller.dart';
 import '../../theme.dart';
-import '../widget/backContainer.dart';
-import '../widget/customRadioIcon.dart';
-import '../widget/nextbutton.dart';
+import '../widget/back_container.dart';
+import '../widget/custom_radio_icon.dart';
+import '../widget/next_button.dart';
 
 class InfoScreen extends GetView<InfoController> {
+  const InfoScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    print(Get.arguments);
+    // print(Get.arguments);
     var mq = MediaQuery.of(context);
     var culomnSpace = 20.0;
     return Scaffold(
       backgroundColor: solidBackground,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: Form(
             key: controller.infoFormKey,
             child: SingleChildScrollView(
@@ -49,7 +51,7 @@ class InfoScreen extends GetView<InfoController> {
                               keyboardType: TextInputType.text,
                               width: 150,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             customTextFormField(
@@ -76,7 +78,7 @@ class InfoScreen extends GetView<InfoController> {
                               'سم',
                               style: bodyStyle,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             customTextFormField(
@@ -92,7 +94,7 @@ class InfoScreen extends GetView<InfoController> {
                               width: 100,
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             Text(
@@ -111,7 +113,7 @@ class InfoScreen extends GetView<InfoController> {
                               'كغ',
                               style: bodyStyle,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             customTextFormField(
@@ -127,7 +129,7 @@ class InfoScreen extends GetView<InfoController> {
                               width: 100,
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             Text(
@@ -146,7 +148,7 @@ class InfoScreen extends GetView<InfoController> {
                               'سنة',
                               style: bodyStyle,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             InkWell(
@@ -169,7 +171,7 @@ class InfoScreen extends GetView<InfoController> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             Text(
@@ -194,7 +196,7 @@ class InfoScreen extends GetView<InfoController> {
                                       : textFormFiled,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Obx(

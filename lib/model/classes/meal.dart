@@ -1,16 +1,21 @@
-class meal {
-  int? meal_id;
-  int? diet_id;
-  String? type;
-  meal({
-    required this.meal_id,
-    required this.diet_id,
+import 'food.dart';
+
+class Meal {
+  int? mealId;
+  int? dietId;
+  int? type;
+  List<Food>? foods;
+  Meal({
+    required this.mealId,
+    required this.dietId,
     required this.type,
+    required this.foods,
   });
 
-  meal.fromJson(Map<String, dynamic> json) {
-    meal_id = json['id']?.toInt();
-    diet_id = json['diet_id']?.toInt();
+  Meal.fromJson(Map<String, dynamic> json) {
+    mealId = json['meal_id']?.toInt();
+    dietId = json['diet_id']?.toInt();
     type = json['type'];
+    foods = List<Food>.from(json['foods']?.map((x) => Food.fromJson(x)));
   }
 }
