@@ -1,3 +1,4 @@
 class Const {
-  static String urlUser = 'http://192.168.1.102:8000/api/user';
+  static String ip = 'http://192.168.1.6:8000/api';
+  static String urlUser = '$ip/user';
 }

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../control/controllers/register_controller.dart';
 import '../../routes.dart';
 import '../../theme.dart';
-import '../widget/backContainer.dart';
+import '../widget/back_container.dart';
 import '../widget/text_form_field.dart';
 
 class RegisterScreen extends GetView<RegisterController> {
@@ -46,7 +46,7 @@ class RegisterScreen extends GetView<RegisterController> {
                             Align(
                               alignment: Alignment.centerRight,
                               child: Container(
-                                padding: EdgeInsets.only(right: 16),
+                                padding: const EdgeInsets.only(right: 16),
                                 child: Text(
                                   'انشاء حساب جديد',
                                   style: headingStyle,
@@ -93,9 +93,9 @@ class RegisterScreen extends GetView<RegisterController> {
 
                                       controller.obscureText.value
                                           ? controller.iconPassword.value =
-                                              Icon(Icons.visibility)
+                                              const Icon(Icons.visibility)
                                           : controller.iconPassword.value =
-                                              Icon(Icons.visibility_off);
+                                              const Icon(Icons.visibility_off);
                                     },
                                     icon: controller.iconPassword.value),
                                 keyboardType: TextInputType.visiblePassword,
@@ -126,9 +126,9 @@ class RegisterScreen extends GetView<RegisterController> {
 
                                       controller.obscureText.value
                                           ? controller.iconPassword.value =
-                                              Icon(Icons.visibility)
+                                              const Icon(Icons.visibility)
                                           : controller.iconPassword.value =
-                                              Icon(Icons.visibility_off);
+                                              const Icon(Icons.visibility_off);
                                     },
                                     icon: controller.iconPassword.value),
                                 keyboardType: TextInputType.visiblePassword,

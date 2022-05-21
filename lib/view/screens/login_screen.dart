@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../control/controllers/login_controller.dart';
 import '../../routes.dart';
 import '../../theme.dart';
-import '../widget/backContainer.dart';
+import '../widget/back_container.dart';
 import '../widget/text_form_field.dart';
 
 class LoginScreen extends GetView<LoginController> {
@@ -94,9 +94,9 @@ class LoginScreen extends GetView<LoginController> {
 
                                       controller.obscureText.value
                                           ? controller.iconPassword.value =
-                                              Icon(Icons.visibility)
+                                              const Icon(Icons.visibility)
                                           : controller.iconPassword.value =
-                                              Icon(Icons.visibility_off);
+                                              const Icon(Icons.visibility_off);
                                     },
                                     icon: controller.iconPassword.value),
                                 keyboardType: TextInputType.visiblePassword,

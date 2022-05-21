@@ -1,27 +1,24 @@
-class activity {
-  int? activity_id;
-  int? user_id;
-  String? activity_name;
-  activity({
-    required this.activity_id,
-    required this.user_id,
-    required this.activity_name,
+class Activity {
+  int? activityId;
+  double? activityFactor;
+  String? activityName;
+  Activity({
+    required this.activityId,
+    required this.activityFactor,
+    required this.activityName,
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'activity_id': activity_id,
-      'user_id': user_id,
-      'activity_name': activity_name,
+      'id': activityId,
+      'activity_factor': activityFactor,
+      'activity_name': activityName,
     };
   }
 
-  activity.fromJson(Map<String, dynamic> json) {
-    activity_id;
-    json['activity_id']?.toInt();
-    user_id;
-    json['user_id']?.toInt();
-    activity_name;
-    json['activity_name'];
+  Activity.fromJson(Map<String, dynamic> json) {
+    activityId = json['id']?.toInt();
+    activityFactor = json['activity_factor']?.toDouble();
+    activityName = json['activity_name'];
   }
 }

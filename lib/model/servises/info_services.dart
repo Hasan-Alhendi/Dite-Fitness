@@ -8,33 +8,33 @@ class InfoServises {
   static String url = Const.urlUser;
 
   static updateInfo(
-      {required api_Token,
-      required id,
-      required first_name,
-      required last_name,
+      {required apiToken,
+      required firstName,
+      required lastName,
       required gender,
-      required birth_date,
+      required birthDate,
       required height}) async {
+    // ignore: unused_local_variable
     var response = await http.put(
-      Uri.parse('$url/$id/add-personal-information'),
+      Uri.parse('$url/add-personal-information'),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'auth-token': '$api_Token',
+        'auth-token': '$apiToken',
       },
       body: jsonEncode(<String, dynamic>{
-        'first_name': first_name,
-        'last_name': last_name,
+        'first_name': firstName,
+        'last_name': lastName,
         'gender': gender,
-        'birth_date': birth_date,
+        'birth_date': birthDate,
         'height': height,
         'wieght': 22
       }),
     );
 
-    print('response');
-    print('$url/$id/add-personal-information');
-    print(response.statusCode);
+    //  print('response');
+    // print('$url/$id/add-personal-information');
+    // print(response.statusCode);
     // if (response.statusCode == 200 || response.statusCode == 201) {
     //  Map valueMap = jsonDecode(response.body);
     // print(valueMap);
