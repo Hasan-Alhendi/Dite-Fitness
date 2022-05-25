@@ -58,7 +58,7 @@ class LoginController extends GetxController {
           // print(await storage.read(key: 'token'));
           loginFormKey.currentState!.save();
           //TODO bottomBar
-          Get.toNamed(Routes.info, arguments: data.id);
+          Get.toNamed(Routes.diet);
         } else {
           Get.snackbar('login', 'this is problem');
         }
