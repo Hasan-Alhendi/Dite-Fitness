@@ -36,7 +36,7 @@ class LoginScreen extends GetView<LoginController> {
                   backContainer(
                     height:
                         (mq.size.height - mq.padding.top - mq.padding.bottom) *
-                            0.58,
+                            0.65,
                     child: LayoutBuilder(builder: (ctx, constraints) {
                       var spaceBettween = (constraints.maxHeight - 40) * 0.06;
                       return SingleChildScrollView(
@@ -118,7 +118,15 @@ class LoginScreen extends GetView<LoginController> {
                                   )),
                             ),
                             SizedBox(
-                              height: spaceBettween,
+                              height: spaceBettween / 2,
+                            ),
+                            Obx(() => controller.isLoding.value == true
+                                ? const Center(
+                                    child: CircularProgressIndicator(),
+                                  )
+                                : const Text('')),
+                            SizedBox(
+                              height: spaceBettween / 2,
                             ),
                             ElevatedButton(
                                 style: ButtonStyle(

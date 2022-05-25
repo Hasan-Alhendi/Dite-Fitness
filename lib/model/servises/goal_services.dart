@@ -20,12 +20,12 @@ class GoalServises {
         'goal_id': goalId,
       }),
     );
-    print(
-        '_____________________________response.statusCode_____________________________');
-    print(response.statusCode);
-    print(response);
-    print('$url/set-goal');
-    print(apiToken);
+    // print(
+    //   '_____________________________response.statusCode_____________________________');
+    // print(response.statusCode);
+    // print(response);
+    //print('$url/set-goal');
+    // print(apiToken);
     /* print('$url/$id/set-goal');
     print(api_Token);
     print(response.body);

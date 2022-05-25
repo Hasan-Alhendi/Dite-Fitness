@@ -9,6 +9,8 @@ const Color borderCard = Color.fromRGBO(75, 39, 118, 1);
 const Color borderCard1 = Color.fromRGBO(129, 135, 253, .25);
 const Color hint = Color.fromRGBO(150, 167, 175, 1);
 const Color buttonAndSelectedItem = Color.fromRGBO(86, 90, 250, 1);
+//const Color buttonAndSelectedItem = Color.fromRGBO(2, 147, 238, 1);
+
 const Color white = Colors.white;
 const Color black = Colors.black;
 
@@ -38,10 +40,7 @@ const Color black = Colors.black;
 TextStyle get headingStyle {
   return GoogleFonts.sen(
     textStyle: const TextStyle(
-      fontSize: 24,
-      fontWeight: FontWeight.normal,
-      color: white,
-    ),
+        fontSize: 24, fontWeight: FontWeight.normal, color: white),
   );
 }
 
@@ -51,6 +50,7 @@ TextStyle get bodyStyle {
       fontSize: 20,
       fontWeight: FontWeight.normal,
       color: white,
+      overflow: TextOverflow.clip,
     ),
   );
 }
@@ -68,10 +68,7 @@ TextStyle get hintStyle {
 TextStyle get body2Style {
   return GoogleFonts.sen(
     textStyle: const TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.normal,
-      color: white,
-    ),
+        fontSize: 14, fontWeight: FontWeight.normal, color: white, height: 1.2),
   );
 }
 

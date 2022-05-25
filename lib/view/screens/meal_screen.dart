@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/diet_controller.dart';
-import '../../routes.dart';
 import '../../theme.dart';
-import '../widget/back_button.dart';
+import '../widget/appbar.dart';
 import '../widget/back_container.dart';
-import '../widget/next_button.dart';
 
 class MealScreen extends GetView<DietController> {
   const MealScreen({Key? key}) : super(key: key);
@@ -15,6 +13,7 @@ class MealScreen extends GetView<DietController> {
   Widget build(BuildContext context) {
     var mq = MediaQuery.of(context);
     return Scaffold(
+      appBar: customAppBar(title: controller.mealName.value),
       backgroundColor: solidBackground,
       body: SafeArea(
         child: Padding(
@@ -22,69 +21,148 @@ class MealScreen extends GetView<DietController> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text(
-                  'الوجبة الأولى:',
-                  textDirection: TextDirection.rtl,
-                  style: headingStyle,
-                ),
                 backContainer(
                   height:
                       (mq.size.height - mq.padding.top - mq.padding.bottom) *
                           0.75,
-                  child: Stack(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: Positioned(
-                          child: Obx(
-                            () => ListView.builder(
-                              itemCount: controller.foods[0]!.length,
-                              itemBuilder: (BuildContext context, int index) =>
-                                  Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(controller.foods[0]![index].foodName!),
-                                  const Text(" "),
-                                  Text(controller.foods[0]![index].quantity!
-                                              .weight ==
-                                          null
-                                      ? ''
-                                      : "الوزن:  " +
-                                          controller
-                                              .foods[0]![index].quantity!.weight
-                                              .toString()),
-                                  const Text(" "),
-                                  Text(
-                                    controller.foods[0]![index].quantity!
-                                                .count ==
-                                            null
-                                        ? ''
-                                        : "العدد:  " +
-                                            controller.foods[0]![index]
-                                                .quantity!.count
-                                                .toString(),
-                                  ),
-                                  const Text(" "),
-                                  Text(controller
-                                      .foods[0]![index].quantity!.quantityStr!),
-                                ],
-                              ),
-                            ),
-                          ),
+                      ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20)),
+                        child: Image.asset(
+                          'assets/1.png',
+                          fit: BoxFit.fill,
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          nextButton(
-                              label: "التالي",
-                              onPressed: () {
-                                //controller.setGoal();
-                              }),
-                          backButton(onPressed: () {
-                            Get.toNamed(Routes.diet);
-                          }),
-                        ],
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(':' + controller.mealName.value, style: bodyStyle),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: Obx(
+                          () {
+                            if (controller.isLoadingMeal.value) {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            } else {
+                              return Expanded(
+                                child: ListView.builder(
+                                  itemCount:
+                                      controller.meal.value.foods!.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) => Row(
+                                    //mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          controller.meal.value.foods![index]
+                                                  .foodName! +
+                                              " " +
+                                              (controller
+                                                          .meal
+                                                          .value
+                                                          .foods![index]
+                                                          .quantity!
+                                                          .weight ==
+                                                      null
+                                                  ? ''
+                                                  : "الوزن:  " +
+                                                      controller
+                                                          .meal
+                                                          .value
+                                                          .foods![index]
+                                                          .quantity!
+                                                          .weight
+                                                          .toString()) +
+                                              " " +
+                                              (controller
+                                                          .meal
+                                                          .value
+                                                          .foods![index]
+                                                          .quantity!
+                                                          .count ==
+                                                      null
+                                                  ? ''
+                                                  : "العدد:  " +
+                                                      controller
+                                                          .meal
+                                                          .value
+                                                          .foods![index]
+                                                          .quantity!
+                                                          .count
+                                                          .toString()) +
+                                              " " +
+                                              controller
+                                                  .meal
+                                                  .value
+                                                  .foods![index]
+                                                  .quantity!
+                                                  .quantityStr!,
+                                          maxLines: 5,
+                                          style: body2Style,
+                                        ),
+                                      ),
+                                      /*  Text(
+                                                controller.meal.value.foods![index]
+                                                    .foodName!,
+                                                //overflow: text,
+                                                maxLines: 1, style: text1,
+                                              ),
+                                              const Text(" "),
+                                              Text(
+                                                controller.meal.value.foods![index]
+                                                            .quantity!.weight ==
+                                                        null
+                                                    ? ''
+                                                    : "الوزن:  " +
+                                                        controller
+                                                            .meal
+                                                            .value
+                                                            .foods![index]
+                                                            .quantity!
+                                                            .weight
+                                                            .toString(),
+                                                // overflow: text,
+                                                maxLines: 1, style: text1,
+                                              ),
+                                              const Text(" "),
+                                              Text(
+                                                controller.meal.value.foods![index]
+                                                            .quantity!.count ==
+                                                        null
+                                                    ? ''
+                                                    : "العدد:  " +
+                                                        controller
+                                                            .meal
+                                                            .value
+                                                            .foods![index]
+                                                            .quantity!
+                                                            .count
+                                                            .toString(),
+                                                // overflow: text,
+                                                maxLines: 1, style: text1,
+                                              ),
+                                              const Text(" "),
+                                              Text(
+                                                controller.meal.value.foods![index]
+                                                    .quantity!.quantityStr!,
+                                                // overflow: text,
+                                                maxLines: 1, style: text1,
+                                              ), */
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                        ),
                       ),
                     ],
                   ),
