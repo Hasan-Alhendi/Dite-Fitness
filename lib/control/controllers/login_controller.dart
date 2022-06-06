@@ -47,18 +47,39 @@ class LoginController extends GetxController {
   doLogin() async {
     bool isValidate = loginFormKey.currentState!.validate();
     if (isValidate) {
-      isLoding.value = true; //  isLoding(true);
+      isLoding.value = true;
       try {
         User? data = await AuthServices.login(
             email: emailController.text, password: passowrdController.text);
 
         if (data != null) {
           await storage.write(key: 'token', value: data.apiToken);
-          //print(data.token);
-          // print(await storage.read(key: 'token'));
           loginFormKey.currentState!.save();
-          //TODO bottomBar
-          Get.toNamed(Routes.diet);
+
+          String? route = await storage.read(key: 'route');
+          switch (route) {
+            case 'food':
+              route = Routes.bottomBar;
+              break;
+            case 'activity':
+              route = Routes.unlikeFood;
+              break;
+            case 'goal':
+              route = Routes.activity;
+
+              break;
+            case 'disease':
+              route = Routes.goal;
+              break;
+            case 'info':
+              route = Routes.disease;
+              break;
+            default:
+              route = Routes.info;
+              break;
+          }
+
+          Get.offNamed(route /* Routes.info*/);
         } else {
           Get.snackbar('login', 'this is problem');
         }

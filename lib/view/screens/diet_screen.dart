@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/diet_controller.dart';
+import '../../model/servises/diet_services.dart';
 import '../../routes.dart';
 import '../../theme.dart';
 import '../widget/appbar.dart';
@@ -17,8 +18,21 @@ class DietScreen extends GetView<DietController> {
   Widget build(BuildContext context) {
     var mq = MediaQuery.of(context);
     return Scaffold(
-      drawer: Drawer(),
-      appBar: customAppBar(title: 'النظام الغذائي'),
+      drawer: const Drawer(),
+      appBar: customAppBar(
+        title: 'النظام الغذائي',
+        widget: IconButton(
+          onPressed: () {
+            controller.diteIndex.value != DietServices.diets.length - 1
+                ? controller.diteIndex.value++
+                : controller.diteIndex.value = 0;
+          },
+          icon: const Icon(
+            Icons.swap_horiz_sharp,
+            size: 26,
+          ),
+        ),
+      ),
       backgroundColor: solidBackground,
       body: SafeArea(
         child: Padding(
@@ -94,6 +108,7 @@ class DietScreen extends GetView<DietController> {
                                         width: 150,
                                         height: 30,
                                         circular: 10,
+                                        style: buttonStyle,
                                         color: buttonAndSelectedItem,
                                         label: mealName,
                                         onPressed: () {

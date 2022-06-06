@@ -7,13 +7,15 @@ import '../../const.dart';
 class InfoServises {
   static String url = Const.urlUser;
 
-  static updateInfo(
-      {required apiToken,
-      required firstName,
-      required lastName,
-      required gender,
-      required birthDate,
-      required height}) async {
+  static updateInfo({
+    required apiToken,
+    required firstName,
+    required lastName,
+    required gender,
+    required birthDate,
+    required height,
+    required weight,
+  }) async {
     // ignore: unused_local_variable
     var response = await http.put(
       Uri.parse('$url/add-personal-information'),
@@ -28,13 +30,14 @@ class InfoServises {
         'gender': gender,
         'birth_date': birthDate,
         'height': height,
-        'wieght': 22
+        'weight': weight
       }),
     );
 
-    //  print('response');
-    // print('$url/$id/add-personal-information');
-    // print(response.statusCode);
+    /*  print('response');
+    print('$url/add-personal-information');
+    print(response.statusCode);
+    print(response.body); */
     // if (response.statusCode == 200 || response.statusCode == 201) {
     //  Map valueMap = jsonDecode(response.body);
     // print(valueMap);

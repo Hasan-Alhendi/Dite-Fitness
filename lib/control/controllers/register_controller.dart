@@ -72,8 +72,7 @@ class RegisterController extends GetxController {
           await storage.write(key: 'token', value: data.apiToken);
 
           registerFormKey.currentState!.save();
-//TODO bottombar
-          Get.toNamed(Routes.register);
+          Get.toNamed(Routes.login);
         } else {
           Get.snackbar('regiser', 'this is problem');
         }

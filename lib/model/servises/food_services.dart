@@ -1,49 +1,17 @@
 import 'dart:convert';
-
-import '../../const.dart';
 import 'package:http/http.dart' as http;
 
-import '../classes/diet.dart';
+import '../../const.dart';
+import '../classes/food.dart';
 
-import '../classes/meal.dart';
+class FoodServices {
+  // static String url = Const.ip;
+  static String urlUser = Const.urlUser;
 
-class DietServices {
-  static String url = Const.urlUser;
-  static List diets = [];
-  //static var mainFood = [];
-  //static var alternativeFood = [];
-  //static List mainFood1 = [];
-  // static List alternativeFood1 = [];
-  static Future<Diet> getDiet({required apiToken, required index}) async {
-    List<Diet> extractedDiets1 = [];
+  static Future<List<Food>> getFoods({required apiToken}) async {
+    List<Food> extractedFoods = [];
     var response = await http.get(
-      Uri.parse('$url/get-Diet-User'),
-      headers: {
-        'Content-Type': 'application/json',
-        //'Accept': 'application/json',
-        'auth-token': '$apiToken',
-      },
-    );
-
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      Map<String, dynamic> valueMap = jsonDecode(response.body);
-
-      diets = valueMap["diets"];
-
-      for (var i = 0; i < diets.length; i++) {
-        Diet diet = Diet.fromjson(diets[i]);
-        extractedDiets1.add(diet);
-      }
-    }
-    // print(extractedDiets1[index].meals);
-    return extractedDiets1[index];
-  }
-
-  static Future<Meal> getMeal(
-      {required apiToken, required dietIndex, required mealIndex}) async {
-    List<Diet> extractedDiets1 = [];
-    var response = await http.get(
-      Uri.parse('$url/get-Diet-User'),
+      Uri.parse('$urlUser/get-all-foods'),
       headers: {
         'Content-Type': 'application/json',
         'auth-token': '$apiToken',
@@ -53,18 +21,33 @@ class DietServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map<String, dynamic> valueMap = jsonDecode(response.body);
 
-      List diets = valueMap["diets"];
+      List activities = valueMap["foods"];
 
-      for (var i = 0; i < diets.length; i++) {
-        Diet diet = Diet.fromjson(diets[i]);
-        extractedDiets1.add(diet);
+      for (var i = 0; i < activities.length; i++) {
+        Food food = Food.unlikeJson(activities[i]);
+        extractedFoods.add(food);
       }
     }
-
-    return extractedDiets1[dietIndex].meals![mealIndex];
+    return extractedFoods;
   }
 
-  /*static setFoodsMeal(
+  static setUnlikeFood({required apiToken, required List<int> foodsId}) async {
+    // ignore: unused_local_variable
+    var response = await http.post(
+      Uri.parse('$urlUser/add-unliked_food'),
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': '$apiToken',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'unliked_food': foodsId,
+      }),
+    );
+  }
+
+  static List<Food> mainFood = [];
+  static List<List<Food>> alternativeFood = [];
+  static setFoodsMeal(
       {required apiToken,
       required int mealId,
       required int dietId,
@@ -72,7 +55,7 @@ class DietServices {
       required List<Food> foods}) async {
     mainFood = [];
     var response = await http.post(
-      Uri.parse('$url/get-alternatives-to-meal'),
+      Uri.parse('$urlUser/get-alternatives-to-meal'),
       headers: {
         'Content-Type': 'application/json',
         'auth-token': '$apiToken',
@@ -104,14 +87,6 @@ class DietServices {
         ),
       );
 
-      print(
-          '_______________________________________________AlternativeFood_______________________________________________');
-
-      print(alternativeFood);
-      print(
-          '_______________________________________________MainFood_______________________________________________');
-
-      print(mainFood);
       //User s = User.fromJson(user);
       // return s;
     }
@@ -148,5 +123,32 @@ class DietServices {
     print('$url/get-alternatives-to-meal');
     print(response.statusCode);
     print(response.body); */
-  }*/
+  }
+
+  /* static setFoodsMeal(
+      {required apiToken,
+      required int mealId,
+      required int dietId,
+      required int type,
+      required List<Food> foods}) async {
+    // ignore: unused_local_variable
+    var response = await http.post(
+      Uri.parse('$urlUser/get-alternatives-to-meal'),
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': '$apiToken',
+      },
+      body: jsonEncode(<String, dynamic>{
+        //'user_id': id,
+        'id': mealId,
+        'diet_id': dietId,
+        'type': type,
+        'foods': foods
+      }),
+    );
+    /*  print('response');
+    print('$urlUser/get-alternatives-to-meal');
+    print(response.statusCode);
+    print(response.body); */
+  } */
 }

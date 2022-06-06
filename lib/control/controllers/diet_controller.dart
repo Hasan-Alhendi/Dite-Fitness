@@ -1,5 +1,4 @@
 import 'package:dite_fitness/model/classes/diet.dart';
-import 'package:dite_fitness/model/classes/food.dart';
 import 'package:dite_fitness/model/classes/meal.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -10,10 +9,9 @@ class DietController extends GetxController {
   var isLoading = true.obs;
   var isLoadingMeal = true.obs;
   var diteIndex = 0.obs;
+  var meal = Meal(mealId: null, dietId: null, type: null, foods: null).obs;
+  // RxList<Diet> diets = <Diet>[].obs;
 
-  RxList<Diet> diets = <Diet>[].obs;
-  RxList<List<Meal>?> meals = DietServices.extractedMeals.obs;
-  RxList<List<Food>?> foods = DietServices.extractedFoods.obs;
   RxString mealName = ''.obs;
   Rx<Diet> diet = Diet(
           dietId: null,
@@ -24,17 +22,11 @@ class DietController extends GetxController {
           fats: null,
           meals: null)
       .obs;
-  var meal = Meal(mealId: null, dietId: null, type: null, foods: null).obs;
   @override
   void onInit() {
     super.onInit();
-    getDiets();
-    getMeals();
-    getFoods();
-    getDiet(index: diteIndex.value);
-    //getDiet(index: 0);
 
-    //print(foods);
+    getDiet(index: diteIndex.value);
   }
 
   getDiet({required index}) async {
@@ -43,8 +35,6 @@ class DietController extends GetxController {
       const apiToken = FlutterSecureStorage();
       String? x = await apiToken.read(key: 'token');
       diet.value = await DietServices.getDiet(apiToken: x, index: index);
-      //var d = diets.value;
-      //print(d);
     } finally {
       isLoading(false);
     }
@@ -62,24 +52,17 @@ class DietController extends GetxController {
     }
   }
 
-  getDiets() async {
+  /* setMeal() async {
     const apiToken = FlutterSecureStorage();
     String? x = await apiToken.read(key: 'token');
-    // print(x);
-    diets.value = await DietServices.getDiets(apiToken: x);
-    //var d = diets.value;
-    //print(d);
-  }
 
-  getMeals() async {
-    const apiToken = FlutterSecureStorage();
-    String? x = await apiToken.read(key: 'token');
-    meals.value = await DietServices.getMeals(apiToken: x);
+    await FoodServices.setFoodsMeal(
+        apiToken: x,
+        mealId: meal.value.mealId!,
+        dietId: meal.value.dietId!,
+        type: meal.value.type!,
+        foods: meal.value.foods!);
+    // Get.toNamed(Routes.alternatives);
   }
-
-  getFoods() async {
-    const apiToken = FlutterSecureStorage();
-    String? x = await apiToken.read(key: 'token');
-    foods.value = await DietServices.getFoods(apiToken: x);
-  }
+ */
 }

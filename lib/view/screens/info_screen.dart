@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../control/controllers/info_controller.dart';
 import '../../theme.dart';
+import '../widget/appbar.dart';
 import '../widget/back_container.dart';
 import '../widget/custom_radio_icon.dart';
 import '../widget/next_button.dart';
@@ -17,20 +18,18 @@ class InfoScreen extends GetView<InfoController> {
     var mq = MediaQuery.of(context);
     var culomnSpace = 20.0;
     return Scaffold(
+      appBar: customAppBar(
+        title: 'المعلومات الشخصية',
+      ),
       backgroundColor: solidBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: Form(
-            key: controller.infoFormKey,
+            key: controller.informationFormKey,
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Text(
-                    'الرجاء ادخال المعلومات الشخصية التالية:',
-                    textDirection: TextDirection.rtl,
-                    style: headingStyle,
-                  ),
                   backContainer(
                     height:
                         (mq.size.height - mq.padding.top - mq.padding.bottom) *
@@ -234,8 +233,8 @@ class InfoScreen extends GetView<InfoController> {
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: controller.selectedDate.value,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
+        firstDate: DateTime(1950, 8),
+        lastDate: DateTime.now());
     if (picked != null && picked != controller.selectedDate.value) {
       /* setState(() {
         selectedDate = picked;

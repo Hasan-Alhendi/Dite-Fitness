@@ -6,9 +6,11 @@ ElevatedButton elevatedButton({
   int? index,
   required Color color,
   required String label,
+  String label2 = '',
   double width = 300,
   double height = 100,
   double circular = 25.0,
+  TextStyle? style,
   required Function()? onPressed,
 }) {
   return ElevatedButton(
@@ -25,9 +27,24 @@ ElevatedButton elevatedButton({
           borderRadius: BorderRadius.circular(circular))),
       backgroundColor: MaterialStateProperty.all(color),
     ),
-    child: Text(
-      label,
-      style: buttonStyle,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          label,
+          textAlign: TextAlign.center,
+          textDirection: TextDirection.rtl,
+          style: style,
+        ),
+        (label2 == ''
+            ? const SizedBox()
+            : Text(
+                label2,
+                textAlign: TextAlign.center,
+                textDirection: TextDirection.rtl,
+                style: button3Style,
+              )),
+      ],
     ),
   );
 }

@@ -47,7 +47,7 @@ class AuthServices {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{
+      body: jsonEncode(<String, dynamic>{
         'email': email,
         'password': password,
         'password_confirmation': confirmPassword,

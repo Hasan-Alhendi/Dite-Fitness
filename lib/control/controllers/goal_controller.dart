@@ -1,12 +1,33 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
+import '../../model/classes/goal.dart';
 import '../../model/servises/Goal_services.dart';
 import '../../routes.dart';
 
 class GoalController extends GetxController {
-  var isLoding = false.obs;
-  RxInt selectedIndex = 0.obs;
+  var isLoading = true.obs;
+  final storage = const FlutterSecureStorage();
+
+  RxInt selectedIndex = 99.obs;
+  var goals = <Goal>[].obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    getGoals();
+  }
+
+  getGoals() async {
+    try {
+      isLoading(true);
+      const apiToken = FlutterSecureStorage();
+      String? x = await apiToken.read(key: 'token');
+      goals.value = await GoalServises.getGoals(apiToken: x);
+    } finally {
+      isLoading(false);
+    }
+  }
 
   setGoal({required goalId}) async {
     const apiToken = FlutterSecureStorage();
@@ -17,6 +38,8 @@ class GoalController extends GetxController {
       apiToken: x,
       goalId: goalId,
     );
-    Get.toNamed(Routes.diet);
+    await storage.write(key: 'route', value: 'goal');
+
+    Get.toNamed(Routes.activity);
   }
 }

@@ -6,11 +6,13 @@ import '../../model/servises/info_services.dart';
 import '../../routes.dart';
 
 class InfoController extends GetxController {
-  var selectedDate = DateTime.now().obs;
+  var selectedDate = DateTime(1990).obs;
   var isLoding = false.obs;
 
   RxInt selectedIndex = 0.obs;
-  final GlobalKey<FormState> infoFormKey = GlobalKey<FormState>();
+  final storage = const FlutterSecureStorage();
+
+  final GlobalKey<FormState> informationFormKey = GlobalKey<FormState>();
   late TextEditingController firstNameController,
       lastNameController,
       heightController,
@@ -43,23 +45,26 @@ class InfoController extends GetxController {
   updateInfo() async {
     const token = FlutterSecureStorage();
     String? apiToken = await token.read(key: 'token');
-    bool isValidate = infoFormKey.currentState!.validate();
+    bool isValidate = informationFormKey.currentState!.validate();
     if (isValidate) {
       isLoding.value = true; //  isLoding(true);
       try {
         await InfoServises.updateInfo(
-            apiToken: apiToken,
-            birthDate: selectedDate.value.toIso8601String(),
-            firstName: firstNameController.text,
-            gender: selectedIndex.value == 1
-                ? 'ذكر'
-                : (selectedIndex.value == 2 ? 'انثى' : ''),
-            height: heightController.text,
-            lastName: lastNameController.text);
+          apiToken: apiToken,
+          birthDate: selectedDate.value.toIso8601String(),
+          firstName: firstNameController.text,
+          gender: selectedIndex.value == 1
+              ? 'ذكر'
+              : (selectedIndex.value == 2 ? 'انثى' : ''),
+          height: heightController.text,
+          lastName: lastNameController.text,
+          weight: wightController.text,
+        );
 
-        infoFormKey.currentState!.save();
-//TODO bottombar
-        Get.toNamed(Routes.activity);
+        informationFormKey.currentState!.save();
+        await storage.write(key: 'route', value: 'info');
+
+        Get.toNamed(Routes.disease);
       } finally {
         isLoding(false);
       }

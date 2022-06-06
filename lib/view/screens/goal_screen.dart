@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../control/controllers/goal_controller.dart';
 import '../../routes.dart';
 import '../../theme.dart';
+import '../widget/appbar.dart';
 import '../widget/back_container.dart';
 import '../widget/back_button.dart';
 import '../widget/custom_radio.dart';
@@ -15,8 +16,11 @@ class GoalScreen extends GetView<GoalController> {
   @override
   Widget build(BuildContext context) {
     var mq = MediaQuery.of(context);
-    var culomnSpace = 20.0;
+    //var culomnSpace = 20.0;
     return Scaffold(
+      appBar: customAppBar(
+        title: 'تحديد الهدف',
+      ),
       backgroundColor: solidBackground,
       body: SafeArea(
         child: Padding(
@@ -24,12 +28,119 @@ class GoalScreen extends GetView<GoalController> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text(
-                  'الرجاء تحديد الهدف',
-                  textDirection: TextDirection.rtl,
-                  style: headingStyle,
-                ),
                 backContainer(
+                  height:
+                      (mq.size.height - mq.padding.top - mq.padding.bottom) *
+                          0.85,
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Column(
+                      children: [
+                        Obx(
+                          () => (controller.goals.isEmpty
+                              ? Text(
+                                  '',
+                                  textAlign: TextAlign.center,
+                                  style: bodyStyle,
+                                )
+                              : Text(
+                                  "بعد تحليل البيانات المدخلة يقترح عليك النظام اختيار: " +
+                                      controller
+                                          .goals[controller.goals.length - 1]
+                                          .goalName!,
+                                  textAlign: TextAlign.center,
+                                  style: bodyStyle,
+                                )),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Expanded(
+                          child: Obx(
+                            () {
+                              if (controller.isLoading.value) {
+                                return const Center(
+                                    child: CircularProgressIndicator());
+                              } else {
+                                return (controller.goals.isEmpty
+                                    ? Text(
+                                        'الرجاء ادخال البيانات بشكل صحيح',
+                                        textAlign: TextAlign.center,
+                                        style: bodyStyle,
+                                      )
+                                    : ListView.builder(
+                                        itemCount: controller.goals.length - 1,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return Obx(
+                                            () {
+                                              return Column(
+                                                children: [
+                                                  customRadio(
+                                                      color: controller
+                                                                  .selectedIndex
+                                                                  .value ==
+                                                              controller
+                                                                  .goals[index]
+                                                                  .goalId
+                                                          ? buttonAndSelectedItem
+                                                          : textFormFiled,
+                                                      index: controller
+                                                          .goals[index].goalId!,
+                                                      label: controller
+                                                          .goals[index]
+                                                          .goalName!,
+                                                      onPressed: () {
+                                                        controller.selectedIndex
+                                                                .value =
+                                                            controller
+                                                                .goals[index]
+                                                                .goalId!;
+                                                      },
+                                                      style: buttonStyle),
+                                                  const SizedBox(
+                                                    height: 20,
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ));
+                              }
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            nextButton(
+                                label: "التالي",
+                                onPressed: () {
+                                  controller.selectedIndex.value == 99
+                                      ? Get.snackbar(
+                                          'خطأ',
+                                          'الرجاء تحديد الهدف',
+                                          snackPosition: SnackPosition.BOTTOM,
+                                        )
+                                      : controller.setGoal(
+                                          goalId:
+                                              controller.selectedIndex.value);
+                                }),
+                            backButton(onPressed: () {
+                              Get.toNamed(Routes.disease);
+                            }),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                /* backContainer(
                   height:
                       (mq.size.height - mq.padding.top - mq.padding.bottom) *
                           0.75,
@@ -108,7 +219,7 @@ class GoalScreen extends GetView<GoalController> {
                       ),
                     ],
                   ),
-                ),
+                ), */
               ],
             ),
           ),
