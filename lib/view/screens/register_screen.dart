@@ -169,16 +169,10 @@ class RegisterScreen extends GetView<RegisterController> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.network(
-                          'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_"G"_Logo.svg/2048px-Google_"G"_Logo.svg.png',
-                          width: 48,
-                          height: 48,
-                          fit: BoxFit.cover),
-                      Image.network(
-                          'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/1024px-Facebook_icon_2013.svg.png',
-                          width: 48,
-                          height: 48,
-                          fit: BoxFit.cover),
+                      Image.asset('assets/google.png',
+                          width: 48, height: 48, fit: BoxFit.cover),
+                      Image.asset('assets/facebook.png',
+                          width: 48, height: 48, fit: BoxFit.cover),
                     ],
                   ),
                   Text(

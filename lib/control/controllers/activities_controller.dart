@@ -6,21 +6,27 @@ import '../../model/servises/activities_services.dart';
 import '../../routes.dart';
 
 class ActivitiesController extends GetxController {
-  var isLoding = false.obs;
+  var isLoading = true.obs;
+  final storage = const FlutterSecureStorage();
+
   var activities = <Activity>[].obs;
-  var selectedIndex = 0.obs;
+  var selectedIndex = 99.obs;
 
   @override
   void onInit() {
     super.onInit();
     getActivities();
-    //print(foods);
   }
 
   getActivities() async {
-    const apiToken = FlutterSecureStorage();
-    String? x = await apiToken.read(key: 'token');
-    activities.value = await ActivitiesService.getActivities(apiToken: x);
+    try {
+      isLoading(true);
+      const apiToken = FlutterSecureStorage();
+      String? x = await apiToken.read(key: 'token');
+      activities.value = await ActivitiesService.getActivities(apiToken: x);
+    } finally {
+      isLoading(false);
+    }
   }
 
   setActivity({required activityId}) async {
@@ -28,6 +34,8 @@ class ActivitiesController extends GetxController {
     String? x = await apiToken.read(key: 'token');
 
     await ActivitiesService.setActivity(apiToken: x, activityId: activityId);
-    Get.toNamed(Routes.goal);
+    await storage.write(key: 'route', value: 'activity');
+
+    Get.toNamed(Routes.unlikeFood);
   }
 }

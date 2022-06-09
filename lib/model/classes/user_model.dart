@@ -45,6 +45,7 @@ class User {
     height = json['height'];
     apiToken = json['api_Token'];
   }
+
   int get getId {
     return id!;
   }

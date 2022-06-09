@@ -82,6 +82,26 @@ TextStyle get buttonStyle {
   );
 }
 
+TextStyle get button2Style {
+  return GoogleFonts.sen(
+    textStyle: const TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.bold,
+      color: white,
+    ),
+  );
+}
+
+TextStyle get button3Style {
+  return GoogleFonts.sen(
+    textStyle: const TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.bold,
+      color: white,
+    ),
+  );
+}
+
 TextStyle get rChartStyle {
   return GoogleFonts.sen(
     textStyle: const TextStyle(

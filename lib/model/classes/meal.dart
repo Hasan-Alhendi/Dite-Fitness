@@ -13,7 +13,7 @@ class Meal {
   });
 
   Meal.fromJson(Map<String, dynamic> json) {
-    mealId = json['meal_id']?.toInt();
+    mealId = json['id']?.toInt();
     dietId = json['diet_id']?.toInt();
     type = json['type'];
     foods = List<Food>.from(json['foods']?.map((x) => Food.fromJson(x)));

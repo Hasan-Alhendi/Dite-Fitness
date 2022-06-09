@@ -47,7 +47,7 @@ class AuthServices {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{
+      body: jsonEncode(<String, dynamic>{
         'email': email,
         'password': password,
         'password_confirmation': confirmPassword,
@@ -56,9 +56,9 @@ class AuthServices {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map valueMap = jsonDecode(response.body);
-      var user = valueMap["User"];
-      User s = User.fromJson(user);
-      return s;
+      //var user = valueMap["User"];
+      // User s = User.fromJson(user);
+      //return s;
     }
   }
 

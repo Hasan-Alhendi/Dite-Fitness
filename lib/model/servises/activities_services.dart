@@ -5,13 +5,13 @@ import '../../const.dart';
 import '../classes/activity.dart';
 
 class ActivitiesService {
-  static String url = Const.ip;
-
-  static List<Activity> extractedActivities = [];
+  static String urlUser = Const.urlUser;
 
   static Future<List<Activity>> getActivities({required apiToken}) async {
+    List<Activity> extractedActivities = [];
+
     var response = await http.get(
-      Uri.parse('$url/get-all-activities'),
+      Uri.parse('$urlUser/get-all-activities'),
       headers: {
         'Content-Type': 'application/json',
         //'Accept': 'application/json',
@@ -37,7 +37,7 @@ class ActivitiesService {
   static setActivity({required apiToken, required int activityId}) async {
     // ignore: unused_local_variable
     var response = await http.post(
-      Uri.parse('$url/user/add-activity'),
+      Uri.parse('$urlUser/add-activity'),
       headers: {
         'Content-Type': 'application/json',
         //'Accept': 'application/json',
@@ -47,11 +47,5 @@ class ActivitiesService {
         'activity_id': activityId,
       }),
     );
-    /*  print(
-        '_____________________________response.statusCode_____________________________');
-    print(response.statusCode);
-    print(response);
-    print('$url/add-activity');
-    print(apiToken); */
   }
 }

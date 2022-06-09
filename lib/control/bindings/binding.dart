@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../controllers/activities_controller.dart';
 import '../controllers/diet_controller.dart';
+import '../controllers/diseases_controller.dart';
+import '../controllers/food_controller.dart';
 import '../controllers/goal_controller.dart';
 import '../controllers/info_controller.dart';
 import '../controllers/login_controller.dart';
@@ -18,5 +20,7 @@ class Binding extends Bindings {
     Get.lazyPut(() => GoalController(), fenix: true);
     Get.lazyPut(() => DietController(), fenix: true);
     Get.lazyPut(() => ActivitiesController(), fenix: true);
+    Get.lazyPut(() => FoodController(), fenix: true);
+    Get.lazyPut(() => DiseasesController(), fenix: true);
   }
 }

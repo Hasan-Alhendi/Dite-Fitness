@@ -10,14 +10,14 @@ class Goal {
 
   Map<String, dynamic> toJson() {
     return {
-      'goal_id': goalId,
+      'id': goalId,
       'user_id': userId,
       'goal_name': goalName,
     };
   }
 
   Goal.fromJson(Map<String, dynamic> json) {
-    goalId = json['goal_id']?.toInt();
+    goalId = json['id']?.toInt();
     userId = json['user_id']?.toInt();
     goalName = json['goal_name'];
   }

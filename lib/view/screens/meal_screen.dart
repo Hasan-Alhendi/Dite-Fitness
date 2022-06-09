@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/diet_controller.dart';
+import '../../control/controllers/food_controller.dart';
 import '../../theme.dart';
 import '../widget/appbar.dart';
 import '../widget/back_container.dart';
@@ -11,9 +12,25 @@ class MealScreen extends GetView<DietController> {
 
   @override
   Widget build(BuildContext context) {
+    FoodController foodController = Get.find();
     var mq = MediaQuery.of(context);
     return Scaffold(
-      appBar: customAppBar(title: controller.mealName.value),
+      appBar: customAppBar(
+        title: controller.mealName.value,
+        widget: IconButton(
+          onPressed: () {
+            foodController.setMeal();
+            /*  print(controller.meal.value.dietId);
+            print(controller.meal.value.mealId);
+            print(controller.meal.value.type);
+            print(controller.meal.value.foods); */
+          },
+          icon: const Icon(
+            Icons.abc,
+            size: 26,
+          ),
+        ),
+      ),
       backgroundColor: solidBackground,
       body: SafeArea(
         child: Padding(
@@ -24,7 +41,7 @@ class MealScreen extends GetView<DietController> {
                 backContainer(
                   height:
                       (mq.size.height - mq.padding.top - mq.padding.bottom) *
-                          0.75,
+                          0.85,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -99,12 +116,20 @@ class MealScreen extends GetView<DietController> {
                                                           .count
                                                           .toString()) +
                                               " " +
-                                              controller
-                                                  .meal
-                                                  .value
-                                                  .foods![index]
-                                                  .quantity!
-                                                  .quantityStr!,
+                                              (controller
+                                                          .meal
+                                                          .value
+                                                          .foods![index]
+                                                          .quantity!
+                                                          .quantityStr ==
+                                                      null
+                                                  ? ""
+                                                  : controller
+                                                      .meal
+                                                      .value
+                                                      .foods![index]
+                                                      .quantity!
+                                                      .quantityStr!),
                                           maxLines: 5,
                                           style: body2Style,
                                         ),
