@@ -82,6 +82,7 @@ class LoginController extends GetxController {
               route = Routes.info;
               break;
           }
+
           /*route*/ /*Routes.info*/
           Get.offNamed(route);
         } else {

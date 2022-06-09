@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/info_controller.dart';
+import '../../routes.dart';
 import '../../theme.dart';
 import '../widget/appbar.dart';
 import '../widget/back_container.dart';
@@ -11,7 +12,6 @@ import '../widget/next_button.dart';
 
 class InfoScreen extends GetView<InfoController> {
   const InfoScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     // print(Get.arguments);
@@ -210,11 +210,22 @@ class InfoScreen extends GetView<InfoController> {
                         SizedBox(
                           height: culomnSpace,
                         ),
-                        nextButton(
-                            label: "التالي",
-                            onPressed: () {
-                              controller.updateInfo();
-                            }),
+                        Obx(() {
+                          if (controller.route.value == 'food') {
+                            return nextButton(
+                                label: "تأكيد",
+                                onPressed: () {
+                                  controller.updateInfo();
+                                });
+                          } else {
+                            return nextButton(
+                                label: "التالي",
+                                onPressed: () {
+                                  controller.updateInfo();
+                                  Get.toNamed(Routes.disease);
+                                });
+                          }
+                        })
                       ],
                     ),
                   ),

@@ -42,7 +42,7 @@ class AuthServices {
 
   static register(
       {required email, required password, required confirmPassword}) async {
-    var response = await client.post(
+    /* var response = */ await client.post(
       Uri.parse("$url/register"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -54,12 +54,12 @@ class AuthServices {
       }),
     );
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
+    /*  if (response.statusCode == 200 || response.statusCode == 201) {
       Map valueMap = jsonDecode(response.body);
       //var user = valueMap["User"];
       // User s = User.fromJson(user);
       //return s;
-    }
+    } */
   }
 
   static login({required email, required password}) async {

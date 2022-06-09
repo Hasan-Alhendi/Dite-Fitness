@@ -3,12 +3,11 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
 import '../../model/servises/info_services.dart';
-import '../../routes.dart';
 
 class InfoController extends GetxController {
   var selectedDate = DateTime(1990).obs;
   var isLoding = false.obs;
-
+  var route = ''.obs;
   RxInt selectedIndex = 0.obs;
   final storage = const FlutterSecureStorage();
 
@@ -24,6 +23,7 @@ class InfoController extends GetxController {
 
   @override
   void onInit() {
+    routeStorage();
     firstNameController = TextEditingController();
     lastNameController = TextEditingController();
     heightController = TextEditingController();
@@ -40,6 +40,13 @@ class InfoController extends GetxController {
     birthDateController.dispose();
     wightController.dispose();
     super.dispose();
+  }
+
+  routeStorage() async {
+    const storage = FlutterSecureStorage();
+    print('await storage.read(key: )');
+    print(await storage.read(key: 'route'));
+    route.value = (await storage.read(key: 'route') ?? '');
   }
 
   updateInfo() async {
@@ -62,9 +69,7 @@ class InfoController extends GetxController {
         );
 
         informationFormKey.currentState!.save();
-        await storage.write(key: 'route', value: 'info');
-
-        Get.toNamed(Routes.disease);
+        // await storage.write(key: 'route', value: 'info');
       } finally {
         isLoding(false);
       }
