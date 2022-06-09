@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/diseases_controller.dart';
-import '../../routes.dart';
 import '../../theme.dart';
 import '../widget/appbar.dart';
-import '../widget/back_button.dart';
 import '../widget/back_container.dart';
 import '../widget/custom_radio.dart';
 import '../widget/next_button.dart';
@@ -77,21 +75,13 @@ class DiseaseScreen extends GetView<DiseasesController> {
                             const SizedBox(
                               height: 20,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                nextButton(
-                                    label: "التالي",
-                                    onPressed: () {
-                                      controller.setDiseases(
-                                        diseasesId: controller.diseaseList,
-                                      );
-                                    }),
-                                backButton(onPressed: () {
-                                  Get.toNamed(Routes.info);
+                            nextButton(
+                                label: "التالي",
+                                onPressed: () {
+                                  controller.setDiseases(
+                                    diseasesId: controller.diseaseList,
+                                  );
                                 }),
-                              ],
-                            ),
                           ],
                         );
                       }

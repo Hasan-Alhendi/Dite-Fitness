@@ -43,6 +43,10 @@ class LoginController extends GetxController {
       return null;
     }
   } */
+  doLogOut() async {
+    await storage.deleteAll();
+    Get.offAndToNamed(Routes.login);
+  }
 
   doLogin() async {
     bool isValidate = loginFormKey.currentState!.validate();
@@ -78,8 +82,8 @@ class LoginController extends GetxController {
               route = Routes.info;
               break;
           }
-
-          Get.offNamed(route /* Routes.info*/);
+          /*route*/ /*Routes.info*/
+          Get.offNamed(route);
         } else {
           Get.snackbar('login', 'this is problem');
         }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../../const.dart';
@@ -33,22 +34,28 @@ class InfoServises {
         'weight': weight
       }),
     );
+  }
 
-    /*  print('response');
-    print('$url/add-personal-information');
-    print(response.statusCode);
-    print(response.body); */
-    // if (response.statusCode == 200 || response.statusCode == 201) {
-    //  Map valueMap = jsonDecode(response.body);
-    // print(valueMap);
-
-    // var user = valueMap["User"];
-    // print('$baseUrl$id');
-
-    // User s = User.fromJson(user);
-    // print('$baseUrl$id');
-
-    //return s;
-    //}
+  static updateWeight({
+    required apiToken,
+    required weight,
+  }) async {
+    var response = await http.post(
+      Uri.parse('$url/add-weight'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'auth-token': '$apiToken',
+      },
+      body: jsonEncode(<String, dynamic>{'weight': weight}),
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Get.back();
+      Get.snackbar(
+        'شكرا لك',
+        'تم تعديل الوزن بنجاح',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
   }
 }

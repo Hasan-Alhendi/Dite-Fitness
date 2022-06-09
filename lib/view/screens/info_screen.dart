@@ -33,7 +33,7 @@ class InfoScreen extends GetView<InfoController> {
                   backContainer(
                     height:
                         (mq.size.height - mq.padding.top - mq.padding.bottom) *
-                            0.75,
+                            0.8,
                     child: Column(
                       children: [
                         Row(
@@ -41,14 +41,11 @@ class InfoScreen extends GetView<InfoController> {
                             customTextFormField(
                               labelText: "الاسم الأخير",
                               hintText: "الاسم الأخير",
-                              prefixIcon: null,
-                              suffixIcon: null,
                               controller: controller.lastNameController,
                               onSaved: (value) => controller.lastName = value!,
-                              validator: null,
-                              obscureText: false,
                               keyboardType: TextInputType.text,
                               width: 150,
+                              //initialvalue: controller.lastNameController.text,
                             ),
                             const SizedBox(
                               width: 20,
@@ -64,6 +61,7 @@ class InfoScreen extends GetView<InfoController> {
                               obscureText: false,
                               keyboardType: TextInputType.text,
                               width: 150,
+                              //initialvalue: '',
                             ),
                           ],
                         ),

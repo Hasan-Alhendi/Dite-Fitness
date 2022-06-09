@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/goal_controller.dart';
-import '../../routes.dart';
 import '../../theme.dart';
 import '../widget/appbar.dart';
 import '../widget/back_container.dart';
-import '../widget/back_button.dart';
 import '../widget/custom_radio.dart';
 import '../widget/next_button.dart';
 
@@ -114,27 +112,18 @@ class GoalScreen extends GetView<GoalController> {
                         const SizedBox(
                           height: 20,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            nextButton(
-                                label: "التالي",
-                                onPressed: () {
-                                  controller.selectedIndex.value == 99
-                                      ? Get.snackbar(
-                                          'خطأ',
-                                          'الرجاء تحديد الهدف',
-                                          snackPosition: SnackPosition.BOTTOM,
-                                        )
-                                      : controller.setGoal(
-                                          goalId:
-                                              controller.selectedIndex.value);
-                                }),
-                            backButton(onPressed: () {
-                              Get.toNamed(Routes.disease);
+                        nextButton(
+                            label: "التالي",
+                            onPressed: () {
+                              controller.selectedIndex.value == 99
+                                  ? Get.snackbar(
+                                      'خطأ',
+                                      'الرجاء تحديد الهدف',
+                                      snackPosition: SnackPosition.BOTTOM,
+                                    )
+                                  : controller.setGoal(
+                                      goalId: controller.selectedIndex.value);
                             }),
-                          ],
-                        ),
                       ],
                     ),
                   ),

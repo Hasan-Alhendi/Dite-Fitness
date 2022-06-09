@@ -5,13 +5,14 @@ import '../../theme.dart';
 Widget customTextFormField({
   required String? labelText,
   required String? hintText,
-  required Widget? prefixIcon,
-  required Widget? suffixIcon,
+  String? initialvalue,
+  Widget? prefixIcon,
+  Widget? suffixIcon,
   required TextEditingController? controller,
   required Function(String?)? onSaved,
-  required String? Function(String?)? validator,
+  String? Function(String?)? validator,
   required TextInputType? keyboardType,
-  required bool obscureText,
+  bool obscureText = false,
   double? width,
   TextAlign textAlign = TextAlign.start,
 }) {
@@ -20,6 +21,7 @@ Widget customTextFormField({
     child: SizedBox(
       width: width,
       child: TextFormField(
+        initialValue: initialvalue,
         style: body2Style,
         textAlign: textAlign,
         autovalidateMode: AutovalidateMode.onUserInteraction,

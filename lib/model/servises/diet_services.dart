@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
+
 import '../../const.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,17 +12,82 @@ import '../classes/meal.dart';
 class DietServices {
   static String url = Const.urlUser;
   static List diets = [];
-  //static var mainFood = [];
-  //static var alternativeFood = [];
-  //static List mainFood1 = [];
-  // static List alternativeFood1 = [];
+  static int modelNumber = 0;
+
+  static Future<int> getActiveDiet({required apiToken}) async {
+    var response = await http.get(
+      Uri.parse('$url/get-diet-active-user'),
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': '$apiToken',
+      },
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Map<String, dynamic> valueMap = jsonDecode(response.body);
+
+      var status = valueMap["status"];
+
+      if (status == true) {
+        var dietMap = valueMap["diets"];
+
+        Diet diet = Diet.fromjson(dietMap);
+        modelNumber = diet.modelNumber! - 1;
+      }
+    }
+    return modelNumber;
+  }
+
   static Future<Diet> getDiet({required apiToken, required index}) async {
+    List<Diet> extractedDiets = [];
+    var response = await http.get(
+      Uri.parse('$url/get-diet-active-user'),
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': '$apiToken',
+      },
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Map<String, dynamic> valueMap = jsonDecode(response.body);
+
+      var status = valueMap["status"];
+
+      if (status == true) {
+        var dietMap = valueMap["diets"];
+
+        Diet diet = Diet.fromjson(dietMap);
+        extractedDiets.add(diet);
+      } else {
+        response = await http.get(
+          Uri.parse('$url/get-Diet-User'),
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-token': '$apiToken',
+          },
+        );
+
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          Map<String, dynamic> valueMap = jsonDecode(response.body);
+
+          diets = valueMap["diets"];
+
+          for (var i = 0; i < diets.length; i++) {
+            Diet diet = Diet.fromjson(diets[i]);
+            extractedDiets.add(diet);
+          }
+        }
+      }
+    }
+    return extractedDiets[index];
+  }
+
+  /*  static Future<Diet> getDiet({required apiToken, required index}) async {
     List<Diet> extractedDiets1 = [];
     var response = await http.get(
       Uri.parse('$url/get-Diet-User'),
       headers: {
         'Content-Type': 'application/json',
-        //'Accept': 'application/json',
         'auth-token': '$apiToken',
       },
     );
@@ -38,7 +105,7 @@ class DietServices {
     // print(extractedDiets1[index].meals);
     return extractedDiets1[index];
   }
-
+ */
   static Future<Meal> getMeal(
       {required apiToken, required dietIndex, required mealIndex}) async {
     List<Diet> extractedDiets1 = [];
@@ -64,6 +131,46 @@ class DietServices {
     return extractedDiets1[dietIndex].meals![mealIndex];
   }
 
+  static setDiet({
+    required apiToken,
+    required int dietId,
+  }) async {
+    var response = await http.post(
+      Uri.parse('$url/save-diet'),
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': '$apiToken',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'diet_id': dietId,
+      }),
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Get.snackbar(
+        'النظام الغذائي',
+        'تم تأكيد النظام الغذائي',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
+  static Future<bool> checkDietExpire({required apiToken}) async {
+    var response = await http.get(
+      Uri.parse('$url/check-user-have-diet-expier'),
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': '$apiToken',
+      },
+    );
+    bool status = false;
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Map<String, dynamic> valueMap = jsonDecode(response.body);
+
+      status = valueMap["user_have_diet_active"];
+    }
+
+    return status;
+  }
   /*static setFoodsMeal(
       {required apiToken,
       required int mealId,

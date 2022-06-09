@@ -1,8 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../control/controllers/diet_controller.dart';
 import '../../theme.dart';
 import '../screens/diet_screen.dart';
+import '../screens/info_screen.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -12,11 +15,13 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  final screens = [
-    const DietScreen(),
-    const DietScreen(),
-    const DietScreen(),
-    const DietScreen(),
+  DietController controllerDiet = Get.find();
+
+  var screens = [
+    DietScreen(),
+    DietScreen(),
+    DietScreen(),
+    const InfoScreen(),
   ];
 
   final items = [
@@ -51,7 +56,7 @@ class _BottomBarState extends State<BottomBar> {
             onTap: (index) {
               setState(() {
                 _page = index;
-                //Get.off(screens[index]);
+                // Get.off(screens[index]);
               });
             },
             letIndexChange: (index) => true,

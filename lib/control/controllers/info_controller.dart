@@ -70,4 +70,11 @@ class InfoController extends GetxController {
       }
     }
   }
+
+  updateWeight() async {
+    const token = FlutterSecureStorage();
+    String? apiToken = await token.read(key: 'token');
+    await InfoServises.updateWeight(
+        apiToken: apiToken, weight: wightController.text);
+  }
 }

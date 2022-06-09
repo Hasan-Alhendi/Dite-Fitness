@@ -35,7 +35,7 @@ class Routes {
         name: register, page: () => const RegisterScreen(), binding: Binding()),
     GetPage(name: info, page: () => const InfoScreen(), binding: Binding()),
     GetPage(name: goal, page: () => const GoalScreen(), binding: Binding()),
-    GetPage(name: diet, page: () => const DietScreen(), binding: Binding()),
+    GetPage(name: diet, page: () => DietScreen(), binding: Binding()),
     GetPage(
         name: activity,
         page: () => const ActivitiesScreen(),

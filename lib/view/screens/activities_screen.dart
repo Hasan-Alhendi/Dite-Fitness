@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/activities_controller.dart';
-import '../../routes.dart';
 import '../../theme.dart';
 import '../widget/appbar.dart';
-import '../widget/back_button.dart';
 import '../widget/back_container.dart';
 import '../widget/custom_radio.dart';
 import '../widget/next_button.dart';
@@ -79,29 +77,19 @@ class ActivitiesScreen extends GetView<ActivitiesController> {
                               const SizedBox(
                                 height: 20,
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  nextButton(
-                                      label: "التالي",
-                                      onPressed: () {
-                                        controller.selectedIndex.value == 99
-                                            ? Get.snackbar(
-                                                'خطأ',
-                                                'الرجاء تحديد درجة النشاط',
-                                                snackPosition:
-                                                    SnackPosition.BOTTOM,
-                                              )
-                                            : controller.setActivity(
-                                                activityId: controller
-                                                    .selectedIndex.value);
-                                      }),
-                                  backButton(onPressed: () {
-                                    Get.toNamed(Routes.goal);
+                              nextButton(
+                                  label: "التالي",
+                                  onPressed: () {
+                                    controller.selectedIndex.value == 99
+                                        ? Get.snackbar(
+                                            'خطأ',
+                                            'الرجاء تحديد درجة النشاط',
+                                            snackPosition: SnackPosition.BOTTOM,
+                                          )
+                                        : controller.setActivity(
+                                            activityId:
+                                                controller.selectedIndex.value);
                                   }),
-                                ],
-                              ),
                             ],
                           );
                         }

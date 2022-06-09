@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/food_controller.dart';
-import '../../routes.dart';
 import '../../theme.dart';
 import '../widget/appbar.dart';
-import '../widget/back_button.dart';
 import '../widget/custom_radio.dart';
 import '../widget/next_button.dart';
 import '../widget/search_widget.dart';
@@ -66,21 +64,13 @@ class UnlikeFoodScreen extends GetView<FoodController> {
                 );
               }
             }),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                nextButton(
-                    label: "التالي",
-                    onPressed: () {
-                      controller.setUnlikeFoods(
-                        foodsId: controller.unlikeFoodsList,
-                      );
-                    }),
-                backButton(onPressed: () {
-                  Get.toNamed(Routes.activity);
+            nextButton(
+                label: "التالي",
+                onPressed: () {
+                  controller.setUnlikeFoods(
+                    foodsId: controller.unlikeFoodsList,
+                  );
                 }),
-              ],
-            ),
           ],
         ),
       ),
