@@ -44,8 +44,6 @@ class InfoController extends GetxController {
 
   routeStorage() async {
     const storage = FlutterSecureStorage();
-    print('await storage.read(key: )');
-    print(await storage.read(key: 'route'));
     route.value = (await storage.read(key: 'route') ?? '');
   }
 
