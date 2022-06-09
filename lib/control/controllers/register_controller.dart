@@ -62,6 +62,23 @@ class RegisterController extends GetxController {
     if (isValidate) {
       isLoding.value = true; //  isLoding(true);
       try {
+        await AuthServices.register(
+          email: emailController.text,
+          password: passowrdController.text,
+          confirmPassword: confirmPasswordController.text,
+        );
+
+        Get.toNamed(Routes.login);
+      } finally {
+        isLoding(false);
+      }
+    }
+  }
+  /*  doRegister() async {
+    bool isValidate = registerFormKey.currentState!.validate();
+    if (isValidate) {
+      isLoding.value = true; //  isLoding(true);
+      try {
         User? data = await AuthServices.register(
           email: emailController.text,
           password: passowrdController.text,
@@ -80,5 +97,5 @@ class RegisterController extends GetxController {
         isLoding(false);
       }
     }
-  }
+  } */
 }
