@@ -5,7 +5,6 @@ import '../../theme.dart';
 Widget customTextFormField({
   required String? labelText,
   required String? hintText,
-  String? initialvalue,
   Widget? prefixIcon,
   Widget? suffixIcon,
   required TextEditingController? controller,
@@ -21,7 +20,6 @@ Widget customTextFormField({
     child: SizedBox(
       width: width,
       child: TextFormField(
-        initialValue: initialvalue,
         style: body2Style,
         textAlign: textAlign,
         autovalidateMode: AutovalidateMode.onUserInteraction,

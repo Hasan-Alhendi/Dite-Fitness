@@ -31,7 +31,7 @@ class DietScreen extends GetView<DietController> {
             return const SizedBox();
           } else {
             return Obx(() {
-              if (controller.dietStatus.value == false) {
+              if (controller.dietStatus.value != 2) {
                 return const SizedBox();
               } else {
                 return IconButton(
@@ -64,7 +64,7 @@ class DietScreen extends GetView<DietController> {
                           0.75,
                   child: Obx(
                     () {
-                      if (controller.dietStatus.value == false) {
+                      if (controller.dietStatus.value == 0) {
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -180,7 +180,7 @@ class DietScreen extends GetView<DietController> {
                     return const SizedBox();
                   } else {
                     return Obx(() {
-                      if (controller.dietStatus.value == false) {
+                      if (controller.dietStatus.value != 2) {
                         return const SizedBox();
                       } else {
                         return nextButton(
@@ -203,8 +203,8 @@ class DietScreen extends GetView<DietController> {
   }
 
   InfoController infoController = Get.find();
-  showDialogBox() {
-    return Get.defaultDialog(
+  showDialogBox() async {
+    return await Get.defaultDialog(
       backgroundColor: container,
       title: 'الرجاء إدخال الوزن الحالي',
       content: Form(
@@ -240,10 +240,43 @@ class DietScreen extends GetView<DietController> {
       ),
       confirm: nextButton(
           label: 'تأكيد',
-          onPressed: () {
+          onPressed: () async {
             infoController.updateWeight();
-            controller.dietStatus.value = true;
+            controller.getDiet(index: controller.diteIndex.value);
+
+            controller.dietStatus.value = 2;
+            Get.back();
           }),
     );
   }
+
+  /*  showDialogBox1() async {
+    return await Get.defaultDialog(
+      backgroundColor: container,
+      title: 'المعلومات المتعلقة بالمستخدم',
+      content: Column(
+        children: [
+          Text(infoController.assesment.value.oldWeightValue.toString() +
+              " :الوزن القديم"),
+          Text(infoController.assesment.value.newWeightValue.toString() +
+              " :الوزن الجديد"),
+          Text(infoController.assesment.value.rank.toString() +
+              " :نسبة الاستفادة"),
+        ],
+      ),
+      confirm: nextButton(
+          label: 'تم',
+          onPressed: () {
+           
+            Get.back();
+          }),
+    );
+    /* return Obx(() {
+      if (infoController.isLoading.value == true) {
+        return const CircularProgressIndicator();
+      } else {
+        return n;
+      }
+    }); */
+  } */
 }
