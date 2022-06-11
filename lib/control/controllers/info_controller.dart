@@ -7,6 +7,8 @@ import '../../model/servises/info_services.dart';
 class InfoController extends GetxController {
   var selectedDate = DateTime(1990).obs;
   var isLoding = false.obs;
+  var isLoading = false.obs;
+  var isWeightLoding = false.obs;
   var route = ''.obs;
   RxInt selectedIndex = 0.obs;
   final storage = const FlutterSecureStorage();
@@ -75,9 +77,14 @@ class InfoController extends GetxController {
   }
 
   updateWeight() async {
-    const token = FlutterSecureStorage();
-    String? apiToken = await token.read(key: 'token');
-    await InfoServises.updateWeight(
-        apiToken: apiToken, weight: wightController.text);
+    try {
+      isLoading(true);
+      const token = FlutterSecureStorage();
+      String? apiToken = await token.read(key: 'token');
+      await InfoServises.updateWeight(
+          apiToken: apiToken, weight: wightController.text);
+    } finally {
+      isLoading(false);
+    }
   }
 }

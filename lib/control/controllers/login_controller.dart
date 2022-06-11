@@ -9,7 +9,16 @@ class LoginController extends GetxController {
   var isLoding = false.obs;
   var obscureText = true.obs;
   var iconPassword = const Icon(Icons.visibility).obs;
-
+  Rx<User> userInfo = User(
+          id: null,
+          email: null,
+          firstName: null,
+          lastName: null,
+          gender: null,
+          birthDate: null,
+          height: null,
+          apiToken: null)
+      .obs;
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   late TextEditingController emailController, passowrdController;
   String email = '', password = '';
@@ -59,7 +68,7 @@ class LoginController extends GetxController {
         if (data != null) {
           await storage.write(key: 'token', value: data.apiToken);
           loginFormKey.currentState!.save();
-
+          userInfo.value = data;
           String? route = await storage.read(key: 'route');
           switch (route) {
             case 'food':

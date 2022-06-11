@@ -154,15 +154,15 @@ class DietServices {
     }
   }
 
-  static Future<bool> checkDietExpire({required apiToken}) async {
+  static Future<int> checkDietExpire({required apiToken}) async {
     var response = await http.get(
-      Uri.parse('$url/check-user-have-diet-expier'),
+      Uri.parse('$url/check-user-have-diet-active'),
       headers: {
         'Content-Type': 'application/json',
         'auth-token': '$apiToken',
       },
     );
-    bool status = false;
+    int status = 99;
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map<String, dynamic> valueMap = jsonDecode(response.body);
 

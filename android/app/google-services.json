@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "726223713178",
+    "project_id": "diet-fitness-7b075",
+    "storage_bucket": "diet-fitness-7b075.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726223713178:android:57e697ce6e3be714ab0023",
+        "android_client_info": {
+          "package_name": "com.diet.fitness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726223713178-7h8bqb1cvoud0r297fr3lhmpieo5526r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP2vGZ0UHlx1NCuKmM63u_Wz9V45vb-sk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726223713178-7h8bqb1cvoud0r297fr3lhmpieo5526r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

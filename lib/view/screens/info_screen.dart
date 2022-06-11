@@ -216,6 +216,8 @@ class InfoScreen extends GetView<InfoController> {
                                 label: "تأكيد",
                                 onPressed: () {
                                   controller.updateInfo();
+                                  //TODO
+                                  Get.toNamed(Routes.disease);
                                 });
                           } else {
                             return nextButton(

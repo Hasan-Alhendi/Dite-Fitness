@@ -12,7 +12,7 @@ class DietController extends GetxController {
   int wight = 0;
   var isLoading = true.obs;
   var isLoadingMeal = true.obs;
-  var dietStatus = true.obs;
+  var dietStatus = 99.obs;
   var diteIndex = 0.obs;
   var meal = Meal(mealId: null, dietId: null, type: null, foods: null).obs;
   // RxList<Diet> diets = <Diet>[].obs;
