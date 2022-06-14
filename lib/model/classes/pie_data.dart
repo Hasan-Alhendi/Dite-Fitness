@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/diet_controller.dart';
@@ -6,7 +6,7 @@ import '../../control/controllers/diet_controller.dart';
 DietController b = Get.find();
 
 class PieData {
-  static List<Data> data = [
+  static List<Data> data1 = [
     Data(
         name: 'Blue',
         percent: b.diet.value.carbohydrate == null
@@ -36,3 +36,4 @@ class Data {
     required this.color,
   });
 }
+ */

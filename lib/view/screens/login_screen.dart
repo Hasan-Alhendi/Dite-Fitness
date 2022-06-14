@@ -9,7 +9,6 @@ import '../widget/text_form_field.dart';
 
 class LoginScreen extends GetView<LoginController> {
   const LoginScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     var mq = MediaQuery.of(context);
@@ -124,7 +123,7 @@ class LoginScreen extends GetView<LoginController> {
                                 ? const Center(
                                     child: CircularProgressIndicator(),
                                   )
-                                : const Text('')),
+                                : const SizedBox()),
                             SizedBox(
                               height: spaceBettween / 2,
                             ),

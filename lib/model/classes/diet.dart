@@ -4,9 +4,9 @@ class Diet {
   int? dietId;
   int? calory;
   int? modelNumber;
-  int? protien;
-  int? carbohydrate;
-  int? fats;
+  double? protien;
+  double? carbohydrate;
+  double? fats;
   List<Meal>? meals;
   Diet({
     required this.dietId,
@@ -22,9 +22,9 @@ class Diet {
     dietId = json['id'];
     calory = json['calory'];
     modelNumber = json['model_number'];
-    protien = json['protien'];
-    carbohydrate = json['carbohydrate'];
-    fats = json['fats'];
+    protien = json['protien']?.toDouble();
+    carbohydrate = json['carbohydrate']?.toDouble();
+    fats = json['fats']?.toDouble();
     meals = List<Meal>.from(json['meals']?.map((x) => Meal.fromJson(x)));
 
     // print(meals);

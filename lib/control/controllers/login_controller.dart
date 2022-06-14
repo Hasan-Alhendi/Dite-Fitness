@@ -93,7 +93,7 @@ class LoginController extends GetxController {
           }
 
           /*route*/ /*Routes.info*/
-          Get.offNamed(route);
+          Get.offNamed(Routes.info);
         } else {
           Get.snackbar('login', 'this is problem');
         }

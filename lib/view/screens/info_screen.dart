@@ -12,6 +12,7 @@ import '../widget/next_button.dart';
 
 class InfoScreen extends GetView<InfoController> {
   const InfoScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // print(Get.arguments);

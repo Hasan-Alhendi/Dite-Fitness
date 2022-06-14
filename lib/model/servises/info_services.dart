@@ -52,6 +52,7 @@ class InfoServises {
       },
       body: jsonEncode(<String, dynamic>{'new_weight': weight}),
     );
+
     if (response.statusCode == 200 || response.statusCode == 201) {
       var valueMap = jsonDecode(response.body);
       var ass = valueMap["assesement"];

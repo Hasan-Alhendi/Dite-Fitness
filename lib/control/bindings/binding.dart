@@ -9,6 +9,7 @@ import '../controllers/info_controller.dart';
 import '../controllers/login_controller.dart';
 import '../controllers/register_controller.dart';
 import '../controllers/splash_controller.dart';
+import '../controllers/training_exercises_controller.dart';
 
 class Binding extends Bindings {
   @override
@@ -22,5 +23,6 @@ class Binding extends Bindings {
     Get.lazyPut(() => ActivitiesController(), fenix: true);
     Get.lazyPut(() => FoodController(), fenix: true);
     Get.lazyPut(() => DiseasesController(), fenix: true);
+    Get.lazyPut(() => TrainingExercisesController(), fenix: true);
   }
 }
