@@ -46,7 +46,7 @@ class FoodController extends GetxController {
     await FoodServices.setUnlikeFood(apiToken: x, foodsId: foodsId);
     await storage.write(key: 'route', value: 'food');
 
-    Get.offAllNamed(Routes.bottomBar);
+    Get.toNamed(Routes.trainingExercises);
   }
 
   setMeal() async {

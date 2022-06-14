@@ -81,36 +81,62 @@ class DietScreen extends GetView<DietController> {
                           ],
                         );
                       } else {
-                        return Column(
-                          children: [
-                            SizedBox(
-                              height: 160,
-                              width: 160,
-                              child: PieChart(
-                                PieChartData(
-                                  sections: getSections(),
-                                  centerSpaceRadius: 45,
-                                  sectionsSpace: 0,
-                                  startDegreeOffset: 0,
-                                  borderData: FlBorderData(
-                                    show: false,
-                                    border: Border.all(color: Colors.white),
+                        return Obx(() {
+                          if (controller.isLoading.value) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          } else {
+                            return Column(
+                              children: [
+                                SizedBox(
+                                  height: 140,
+                                  width: 140,
+                                  child: PieChart(
+                                    PieChartData(
+                                      sections: getSections(),
+                                      centerSpaceRadius: 35,
+                                      sectionsSpace: 0,
+                                      startDegreeOffset: 0,
+                                      borderData: FlBorderData(
+                                        show: false,
+                                        border: Border.all(color: Colors.white),
+                                      ),
+                                      //centerSpaceColor: Colors.white,
+                                    ),
                                   ),
-                                  //centerSpaceColor: Colors.white,
                                 ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Obx(
-                                () {
-                                  if (controller.isLoading.value) {
-                                    return const Center(
-                                        child: CircularProgressIndicator());
-                                  } else {
+                                const SizedBox(
+                                  height: 20,
+                                  child: Divider(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 140,
+                                  width: 140,
+                                  child: PieChart(
+                                    PieChartData(
+                                      sections: getSections(),
+                                      centerSpaceRadius: 35,
+                                      sectionsSpace: 0,
+                                      startDegreeOffset: 0,
+                                      borderData: FlBorderData(
+                                        show: false,
+                                        border: Border.all(color: Colors.white),
+                                      ),
+                                      //centerSpaceColor: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                  child: Divider(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: Obx(() {
                                     return Expanded(
                                       child: GridView.builder(
                                         itemCount:
@@ -121,7 +147,7 @@ class DietScreen extends GetView<DietController> {
                                         gridDelegate:
                                             const SliverGridDelegateWithFixedCrossAxisCount(
                                                 crossAxisCount: 2,
-                                                childAspectRatio: 3 / 1.3,
+                                                childAspectRatio: 3 / 1.1,
                                                 crossAxisSpacing: 10,
                                                 mainAxisSpacing: 10),
                                         itemBuilder:
@@ -163,11 +189,13 @@ class DietScreen extends GetView<DietController> {
                                       ),
                                     );
                                   }
-                                },
-                              ),
-                            ),
-                          ],
-                        );
+                                      //   },
+                                      ),
+                                ),
+                              ],
+                            );
+                          }
+                        });
                       }
                     },
                   ),
@@ -245,7 +273,7 @@ class DietScreen extends GetView<DietController> {
             controller.getDiet(index: controller.diteIndex.value);
 
             controller.dietStatus.value = 2;
-            Get.back();
+            //Get.back();
           }),
     );
   }

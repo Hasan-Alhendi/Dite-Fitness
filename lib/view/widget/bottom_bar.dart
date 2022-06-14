@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../control/controllers/diet_controller.dart';
 import '../../theme.dart';
 import '../screens/diet_screen.dart';
+import '../screens/exercise_day_screen.dart';
 import '../screens/info_screen.dart';
 
 class BottomBar extends StatefulWidget {
@@ -19,7 +20,7 @@ class _BottomBarState extends State<BottomBar> {
 
   var screens = [
     DietScreen(),
-    DietScreen(),
+    const ExerciseDayScreen(),
     DietScreen(),
     const InfoScreen(),
   ];
@@ -56,7 +57,7 @@ class _BottomBarState extends State<BottomBar> {
             onTap: (index) {
               setState(() {
                 _page = index;
-                // Get.off(screens[index]);
+                //Get.off(screens[index]);
               });
             },
             letIndexChange: (index) => true,

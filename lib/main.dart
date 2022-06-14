@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'control/bindings/binding.dart';
 import 'routes.dart';
 
 Future<void> main() async {
@@ -39,7 +40,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: (token != '' && token != null) ? Routes.diet : Routes.login,
+      initialBinding: Binding(),
+      initialRoute:
+          (token != '' && token != null) ? Routes.bottomBar : Routes.login,
       getPages: Routes.routes,
       theme: ThemeData(
         brightness: Brightness.dark,
