@@ -21,7 +21,6 @@ class InfoServises {
     required height,
     required weight,
   }) async {
-    // ignore: unused_local_variable
     var response = await http.put(
       Uri.parse('$url/add-personal-information'),
       headers: {
@@ -38,6 +37,15 @@ class InfoServises {
         'weight': weight
       }),
     );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return response;
+    } else {
+      Get.snackbar('خطأ', "تأكد من الاتصال بالانترنت");
+      print(response.body);
+      print('$url/add-personal-information');
+      print(response.statusCode);
+      return;
+    }
   }
 
   static updateWeight({

@@ -26,7 +26,7 @@ class RegisterScreen extends GetView<RegisterController> {
               child: Column(
                 children: [
                   Text(
-                    'اسم التطبيق هنا',
+                    'Diet Fitness',
                     style: headingStyle,
                   ),
                   SizedBox(
@@ -158,6 +158,7 @@ class RegisterScreen extends GetView<RegisterController> {
                       );
                     }),
                   ),
+                  const SizedBox(height: 10),
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
@@ -165,6 +166,7 @@ class RegisterScreen extends GetView<RegisterController> {
                       style: body2Style,
                     ),
                   ),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -175,6 +177,7 @@ class RegisterScreen extends GetView<RegisterController> {
                           width: 48, height: 48, fit: BoxFit.cover),
                     ],
                   ),
+                  const SizedBox(height: 10),
                   Text(
                     'لدي حساب بالفعل',
                     style: body2Style,

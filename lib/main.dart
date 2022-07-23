@@ -41,8 +41,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialBinding: Binding(),
-      initialRoute:
-          (token != '' && token != null) ? Routes.bottomBar : Routes.login,
+      initialRoute: Routes.splash,
       getPages: Routes.routes,
       theme: ThemeData(
         brightness: Brightness.dark,

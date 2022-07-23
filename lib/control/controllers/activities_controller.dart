@@ -33,9 +33,13 @@ class ActivitiesController extends GetxController {
     const apiToken = FlutterSecureStorage();
     String? x = await apiToken.read(key: 'token');
 
-    await ActivitiesService.setActivity(apiToken: x, activityId: activityId);
+    var res = await ActivitiesService.setActivity(
+        apiToken: x, activityId: activityId);
     await storage.write(key: 'route', value: 'activity');
-
-    Get.toNamed(Routes.unlikeFood);
+    if (res == null) {
+      return;
+    } else {
+      Get.toNamed(Routes.unlikeFood);
+    }
   }
 }

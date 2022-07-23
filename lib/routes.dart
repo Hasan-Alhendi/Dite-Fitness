@@ -5,12 +5,15 @@ import 'view/screens/activities_screen.dart';
 import 'view/screens/alternatives_screen.dart';
 import 'view/screens/diet_screen.dart';
 import 'view/screens/disease_screen.dart';
+import 'view/screens/exercis_details_screen.dart';
 import 'view/screens/exercise_day_screen.dart';
 import 'view/screens/exercise_list_screen.dart';
+import 'view/screens/exercise_screen.dart';
 import 'view/screens/meal_screen.dart';
 import 'view/screens/goal_screen.dart';
 import 'view/screens/info_screen.dart';
 import 'view/screens/login_screen.dart';
+import 'view/screens/notifications_screen.dart';
 import 'view/screens/register_screen.dart';
 import 'view/screens/splash_screen.dart';
 import 'view/screens/training_exercises_screen.dart';
@@ -33,6 +36,9 @@ class Routes {
   static const trainingExercises = '/trainingExercises';
   static const exerciseDayScreen = '/exerciseDayScreen';
   static const exerciseListScreen = '/exerciseListScreen';
+  static const exerciseScreen = '/exerciseScreen';
+  static const exerciseDetailsScreen = '/exerciseDetailsScreen';
+  static const notificationsScreen = '/notificationsScreen';
 
   static final routes = [
     GetPage(name: splash, page: () => const SplashScreen(), binding: Binding()),
@@ -69,6 +75,18 @@ class Routes {
     GetPage(
         name: trainingExercises,
         page: () => const TrainingExercisesScreen(),
+        binding: Binding()),
+    GetPage(
+        name: exerciseScreen,
+        page: () => ExerciseScreen(mediaUrl: ''),
+        binding: Binding()),
+    GetPage(
+        name: exerciseDetailsScreen,
+        page: () => const ExerciseDetailsScreen(),
+        binding: Binding()),
+    GetPage(
+        name: notificationsScreen,
+        page: () => const NotificationsScreen(),
         binding: Binding()),
   ];
 }

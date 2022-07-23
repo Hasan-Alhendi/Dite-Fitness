@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../../const.dart';
@@ -43,6 +44,15 @@ class FoodServices {
         'unliked_food': foodsId,
       }),
     );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return response;
+    } else {
+      Get.snackbar('خطأ', "تأكد من الاتصال بالانترنت");
+      print(response.body);
+      print('$urlUser/add-unliked_food');
+      print(response.statusCode);
+      return;
+    }
   }
 
   static List<Food> mainFood = [];

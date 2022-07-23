@@ -33,9 +33,14 @@ class DiseasesController extends GetxController {
     const apiToken = FlutterSecureStorage();
     String? x = await apiToken.read(key: 'token');
 
-    await DiseaseService.setDiseases(apiToken: x, diseaseId: diseasesId);
+    var res =
+        await DiseaseService.setDiseases(apiToken: x, diseaseId: diseasesId);
     await storage.write(key: 'route', value: 'disease');
-
-    Get.toNamed(Routes.goal);
+    print(res);
+    if (res == null) {
+      return;
+    } else {
+      Get.toNamed(Routes.goal);
+    }
   }
 }

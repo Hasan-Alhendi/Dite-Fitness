@@ -90,19 +90,44 @@ class DietScreen extends GetView<DietController> {
                               children: [
                                 SizedBox(
                                   height: 140,
-                                  width: 140,
-                                  child: PieChart(
-                                    PieChartData(
-                                      sections: getSections(),
-                                      centerSpaceRadius: 35,
-                                      sectionsSpace: 0,
-                                      startDegreeOffset: 0,
-                                      borderData: FlBorderData(
-                                        show: false,
-                                        border: Border.all(color: Colors.white),
+                                  //width: 500,
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        flex: 15,
+                                        child: PieChart(
+                                          PieChartData(
+                                            sections: getSections(),
+                                            centerSpaceRadius: 35,
+                                            sectionsSpace: 0,
+                                            startDegreeOffset: 0,
+                                            borderData: FlBorderData(
+                                              show: false,
+                                              border: Border.all(
+                                                  color: Colors.white),
+                                            ),
+                                            //centerSpaceColor: Colors.white,
+                                          ),
+                                        ),
                                       ),
-                                      //centerSpaceColor: Colors.white,
-                                    ),
+                                      Flexible(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            circle(
+                                                text: 'بروتين',
+                                                color: Colors.yellow),
+                                            circle(
+                                                text: 'كربوهيدرات',
+                                                color: Colors.blue),
+                                            circle(
+                                                text: 'دهون',
+                                                color: Colors.green),
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ),
                                 const SizedBox(
@@ -226,6 +251,25 @@ class DietScreen extends GetView<DietController> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Directionality circle({required String text, Color? color}) {
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Row(
+        children: [
+          Container(
+            width: 20,
+            height: 20,
+            decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+          ),
+          SizedBox(
+            width: 5,
+          ),
+          Text(text),
+        ],
       ),
     );
   }

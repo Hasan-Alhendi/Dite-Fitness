@@ -1,6 +1,6 @@
 class Exercise {
   int? exerciseId;
-  int? count;
+  String? count;
   double? time;
   String? exerciseName;
   String? videoPath;
@@ -36,7 +36,7 @@ class Exercise {
 
   Exercise.fromJson(Map<String, dynamic> map) {
     exerciseId = map['id']?.toInt();
-    count = map['count']?.toInt();
+    count = map['count'];
     time = map['time']?.toDouble();
     exerciseName = map['exercise_name'];
     videoPath = map['video_path'];

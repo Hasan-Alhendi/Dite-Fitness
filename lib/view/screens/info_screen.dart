@@ -157,12 +157,9 @@ class InfoScreen extends GetView<InfoController> {
                                 child: customTextFormField(
                                   labelText: null,
                                   hintText: '25',
-                                  prefixIcon: null,
-                                  suffixIcon: null,
                                   controller: controller.birthDateController,
                                   onSaved: null,
                                   validator: null,
-                                  obscureText: false,
                                   keyboardType: TextInputType.datetime,
                                   width: 100,
                                   textAlign: TextAlign.center,
@@ -212,20 +209,20 @@ class InfoScreen extends GetView<InfoController> {
                           height: culomnSpace,
                         ),
                         Obx(() {
-                          if (controller.route.value == 'food') {
+                          if (controller.isAddInfo.value == true) {
                             return nextButton(
                                 label: "تأكيد",
                                 onPressed: () {
                                   controller.updateInfo();
-                                  //TODO
-                                  Get.toNamed(Routes.disease);
+
+                                  // Get.toNamed(Routes.disease);
                                 });
                           } else {
                             return nextButton(
                                 label: "التالي",
                                 onPressed: () {
                                   controller.updateInfo();
-                                  Get.toNamed(Routes.disease);
+                                  //Get.toNamed(Routes.disease);
                                 });
                           }
                         })
@@ -244,14 +241,14 @@ class InfoScreen extends GetView<InfoController> {
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
-        initialDate: controller.selectedDate.value,
+        initialDate: DateTime.now(),
         firstDate: DateTime(1950, 8),
         lastDate: DateTime.now());
-    if (picked != null && picked != controller.selectedDate.value) {
-      /* setState(() {
-        selectedDate = picked;
-      });*/
+    if (picked != null) {
       controller.selectedDate.value = picked;
+      controller.birthDateController.text = (DateTime.now().year -
+              picked.year /*DateFormat('yyyy-MM-DD').format(picked)*/)
+          .toString();
     }
   }
 }

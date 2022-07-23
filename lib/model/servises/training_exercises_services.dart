@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../../const.dart';
@@ -50,6 +51,15 @@ class TrainingExercisesServices {
         'training_exercise_id': trainingExerciseId,
       }),
     );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return response;
+    } else {
+      Get.snackbar('خطأ', "تأكد من الاتصال بالانترنت");
+      print(response.body);
+      print('$urlUser/save-training-exercise');
+      print(response.statusCode);
+      return;
+    }
   }
 
   static Future<List<Day>> getCurrentTrainingExercises(
@@ -93,7 +103,7 @@ class TrainingExercisesServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map<String, dynamic> valueMap = jsonDecode(response.body);
 
-      List d = valueMap["trainning_exercise_day"];
+      List d = valueMap["day_exercise_trainning"];
       List trainingExercisesList = d[0]["exercises"];
 
       for (var i = 0; i < trainingExercisesList.length; i++) {

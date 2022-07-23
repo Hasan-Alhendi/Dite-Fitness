@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../../const.dart';
 import '../classes/user_model.dart';
@@ -74,8 +75,12 @@ class AuthServices {
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map valueMap = jsonDecode(response.body);
       var user = valueMap["User"];
-      User s = User.fromJson(user);
-      return s;
+      if (user != null) {
+        User s = User.fromJson(user);
+        return s;
+      } else {
+        Get.snackbar('خطأ', "اسم المستخدم أو كلمة المرور غير صالحة");
+      }
     }
   }
 }
