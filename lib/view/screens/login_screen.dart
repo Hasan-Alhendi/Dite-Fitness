@@ -24,7 +24,7 @@ class LoginScreen extends GetView<LoginController> {
               child: Column(
                 children: [
                   Text(
-                    'اسم التطبيق هنا',
+                    'Diet Fitness',
                     style: headingStyle,
                   ),
                   SizedBox(
@@ -146,6 +146,7 @@ class LoginScreen extends GetView<LoginController> {
                       );
                     }),
                   ),
+                  const SizedBox(height: 10),
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
@@ -153,6 +154,7 @@ class LoginScreen extends GetView<LoginController> {
                       style: body2Style,
                     ),
                   ),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -163,6 +165,7 @@ class LoginScreen extends GetView<LoginController> {
                           width: 48, height: 48, fit: BoxFit.cover),
                     ],
                   ),
+                  const SizedBox(height: 10),
                   Text(
                     'ليس لدي حساب؟',
                     style: body2Style,

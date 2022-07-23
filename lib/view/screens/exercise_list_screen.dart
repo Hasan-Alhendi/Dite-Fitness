@@ -2,9 +2,11 @@ import 'package:dite_fitness/view/widget/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../control/bindings/binding.dart';
 import '../../control/controllers/training_exercises_controller.dart';
 import '../../theme.dart';
 import '../widget/back_container.dart';
+import 'exercise_screen.dart';
 
 class ExerciseListScreen extends GetView<TrainingExercisesController> {
   const ExerciseListScreen({Key? key}) : super(key: key);
@@ -34,20 +36,33 @@ class ExerciseListScreen extends GetView<TrainingExercisesController> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            print(controller.exerciseList[index].videoPath);
+                            print(
+                                "_____________controller.exerciseList[index].videoPath_____________");
+
+                            //Get.toNamed(Routes.exerciseScreen);
+                            Get.to(
+                                ExerciseScreen(
+                                    mediaUrl:
+                                        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'
+                                    /* controller.exerciseList[index].videoPath! */
+
+                                    ),
+                                arguments: index,
+                                binding: Binding());
                           },
                           child: ListTile(
                             contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 16),
                             subtitle: Text(
-                              //controller.exerciseList[index].count.toString(),
-                              'dfsfadfa',
+                              controller.exerciseList[index].count.toString(),
+                              //'dfsfadfa',
                               style: body2Style,
                             ),
                             title: Text(
-                              // controller.exerciseList[index].exerciseName.toString(),
+                              controller.exerciseList[index].exerciseName
+                                  .toString(),
                               // controller.exerciseList[index].videoPath!.toString(),
-                              '___________________',
+                              // '___________________',
                               style: bodyStyle,
                             ),
                             leading: ClipRRect(

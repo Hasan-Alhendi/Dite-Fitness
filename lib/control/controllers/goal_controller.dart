@@ -34,12 +34,15 @@ class GoalController extends GetxController {
     String? x = await apiToken.read(key: 'token');
 
     //await GoalServises.setGoal(apiToken: apiToken, goal: goal);
-    await GoalServises.setGoal(
+    var res = await GoalServises.setGoal(
       apiToken: x,
       goalId: goalId,
     );
     await storage.write(key: 'route', value: 'goal');
-
-    Get.toNamed(Routes.activity);
+    if (res == null) {
+      return;
+    } else {
+      Get.toNamed(Routes.activity);
+    }
   }
 }

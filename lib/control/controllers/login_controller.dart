@@ -57,6 +57,7 @@ class LoginController extends GetxController {
     Get.offAndToNamed(Routes.login);
   }
 
+  late User? user10 = null;
   doLogin() async {
     bool isValidate = loginFormKey.currentState!.validate();
     if (isValidate) {
@@ -69,7 +70,8 @@ class LoginController extends GetxController {
           await storage.write(key: 'token', value: data.apiToken);
           loginFormKey.currentState!.save();
           userInfo.value = data;
-          String? route = await storage.read(key: 'route');
+          user10 = data;
+          /*  String? route = await storage.read(key: 'route');
           switch (route) {
             case 'food':
               route = Routes.bottomBar;
@@ -90,10 +92,10 @@ class LoginController extends GetxController {
             default:
               route = Routes.info;
               break;
-          }
+          } */
 
           /*route*/ /*Routes.info*/
-          Get.offNamed(Routes.info);
+          Get.offNamed(Routes.bottomBar);
         } else {
           Get.snackbar('login', 'this is problem');
         }

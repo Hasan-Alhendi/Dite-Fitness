@@ -1,16 +1,19 @@
+import 'package:dite_fitness/control/controllers/login_controller.dart';
 import 'package:flutter/Material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
 import '../../model/servises/info_services.dart';
+import '../../routes.dart';
 
 class InfoController extends GetxController {
-  var selectedDate = DateTime(1990).obs;
   var isLoding = false.obs;
   var isLoading = false.obs;
   var isWeightLoding = false.obs;
   var route = ''.obs;
+  var selectedDate = DateTime.now().obs;
   RxInt selectedIndex = 0.obs;
+  var isAddInfo = false.obs;
   final storage = const FlutterSecureStorage();
 
   final GlobalKey<FormState> informationFormKey = GlobalKey<FormState>();
@@ -22,7 +25,7 @@ class InfoController extends GetxController {
   String firstName = '', lastName = '';
   int height = 0, wight = 0;
   DateTime birthDate = DateTime.now();
-
+  LoginController loginController = Get.find();
   @override
   void onInit() {
     routeStorage();
@@ -31,6 +34,7 @@ class InfoController extends GetxController {
     heightController = TextEditingController();
     birthDateController = TextEditingController();
     wightController = TextEditingController();
+
     super.onInit();
   }
 
@@ -56,9 +60,11 @@ class InfoController extends GetxController {
     if (isValidate) {
       isLoding.value = true; //  isLoding(true);
       try {
-        await InfoServises.updateInfo(
+        var res = await InfoServises.updateInfo(
           apiToken: apiToken,
-          birthDate: selectedDate.value.toIso8601String(),
+          birthDate: /*birthDateController
+              .text*/
+              selectedDate.value.toIso8601String(),
           firstName: firstNameController.text,
           gender: selectedIndex.value == 1
               ? 'ذكر'
@@ -67,9 +73,18 @@ class InfoController extends GetxController {
           lastName: lastNameController.text,
           weight: wightController.text,
         );
-
         informationFormKey.currentState!.save();
+
         // await storage.write(key: 'route', value: 'info');
+        if (res == null) {
+          return;
+        } else {
+          if (isAddInfo.value == false) {
+            Get.toNamed(Routes.disease);
+          } else {
+            return;
+          }
+        }
       } finally {
         isLoding(false);
       }

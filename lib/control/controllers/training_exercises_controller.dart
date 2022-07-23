@@ -64,10 +64,12 @@ class TrainingExercisesController extends GetxController {
     const apiToken = FlutterSecureStorage();
     String? x = await apiToken.read(key: 'token');
 
-    await TrainingExercisesServices.settrainingExercise(
+    var res = await TrainingExercisesServices.settrainingExercise(
         apiToken: x, trainingExerciseId: trainingExerciseId);
-    // await storage.write(key: 'route', value: 'activity');
-
-    Get.toNamed(Routes.bottomBar);
+    if (res == null) {
+      return;
+    } else {
+      Get.toNamed(Routes.bottomBar);
+    }
   }
 }

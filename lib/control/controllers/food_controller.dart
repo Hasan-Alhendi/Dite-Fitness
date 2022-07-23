@@ -43,10 +43,13 @@ class FoodController extends GetxController {
     const apiToken = FlutterSecureStorage();
     String? x = await apiToken.read(key: 'token');
 
-    await FoodServices.setUnlikeFood(apiToken: x, foodsId: foodsId);
+    var res = await FoodServices.setUnlikeFood(apiToken: x, foodsId: foodsId);
     await storage.write(key: 'route', value: 'food');
-
-    Get.toNamed(Routes.trainingExercises);
+    if (res == null) {
+      return;
+    } else {
+      Get.toNamed(Routes.trainingExercises);
+    }
   }
 
   setMeal() async {

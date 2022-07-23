@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/login_controller.dart';
+import '../../routes.dart';
 import '../../theme.dart';
 
 //import 'logen.dart';
@@ -37,13 +38,15 @@ class _MyDrawersState extends State<MyDrawers> {
         */
           ListTile(
             leading: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.blur_linear_sharp),
+              onPressed: () {
+                Get.toNamed(Routes.notificationsScreen);
+              },
+              icon: const Icon(Icons.notifications),
               iconSize: 25,
               color: buttonAndSelectedItem,
             ),
             title: Text(
-              'language',
+              'الإشعارات',
               style: body2Style,
             ),
           ),
@@ -57,7 +60,7 @@ class _MyDrawersState extends State<MyDrawers> {
               color: buttonAndSelectedItem,
             ),
             title: Text(
-              "Log out",
+              "تسجيل الخروج",
               style: body2Style,
             ),
           ),

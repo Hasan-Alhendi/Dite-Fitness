@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../../const.dart';
@@ -47,5 +48,14 @@ class ActivitiesService {
         'activity_id': activityId,
       }),
     );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return response;
+    } else {
+      Get.snackbar('خطأ', "تأكد من الاتصال بالانترنت");
+      print(response.body);
+      print('$urlUser/add-activity');
+      print(response.statusCode);
+      return;
+    }
   }
 }
