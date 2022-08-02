@@ -28,19 +28,26 @@ class ExerciseScreen extends GetView<ExerciseController> {
         appBar: customAppBar(title: 'التمارين الرياضية'),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            IconButton(
-                onPressed: () {
-                  exerciseDetailscontroller.detail.value =
-                      listExercises[index].description!;
-                  Get.toNamed(
-                    Routes.exerciseDetailsScreen,
-                  );
-                },
-                icon: const Icon(Icons.info_outline)),
             Center(child: player),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                const Text('طريقة لعب التمرين'),
+                IconButton(
+                    onPressed: () {
+                      exerciseDetailscontroller.detail.value =
+                          listExercises[index].description!;
+                      Get.toNamed(
+                        Routes.exerciseDetailsScreen,
+                      );
+                    },
+                    icon: const Icon(Icons.info_outline)),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
                     onPressed: () {
@@ -53,7 +60,10 @@ class ExerciseScreen extends GetView<ExerciseController> {
                       controller.youtubePlayerController
                           .load(YoutubePlayer.convertUrlToId(url)!);
                     },
-                    icon: const Icon(Icons.next_plan)),
+                    icon: const Icon(
+                      Icons.skip_previous,
+                      size: 70,
+                    )),
                 IconButton(
                     onPressed: () {
                       index == listExercises.length - 1
@@ -65,7 +75,10 @@ class ExerciseScreen extends GetView<ExerciseController> {
                       controller.youtubePlayerController
                           .load(YoutubePlayer.convertUrlToId(url)!);
                     },
-                    icon: const Icon(Icons.skip_next)),
+                    icon: const Icon(
+                      Icons.skip_next,
+                      size: 70,
+                    )),
               ],
             ),
           ],

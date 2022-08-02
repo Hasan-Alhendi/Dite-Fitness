@@ -1,3 +1,4 @@
+import 'package:dite_fitness/control/controllers/info_controller.dart';
 import 'package:dite_fitness/model/classes/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -19,7 +20,7 @@ class LoginController extends GetxController {
           height: null,
           apiToken: null)
       .obs;
-  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>(debugLabel: 'login');
   late TextEditingController emailController, passowrdController;
   String email = '', password = '';
   final storage = const FlutterSecureStorage();
@@ -54,10 +55,15 @@ class LoginController extends GetxController {
   } */
   doLogOut() async {
     await storage.deleteAll();
-    Get.offAndToNamed(Routes.login);
+    infoController.isAddInfo.value = false;
+    // Get.delete<LoginController>();
+    Get.delete<InfoController>();
+    Get.offAndToNamed(Routes.splash);
   }
 
-  late User? user10 = null;
+  var xd = Get.put(InfoController());
+  InfoController infoController = Get.find();
+
   doLogin() async {
     bool isValidate = loginFormKey.currentState!.validate();
     if (isValidate) {
@@ -70,32 +76,21 @@ class LoginController extends GetxController {
           await storage.write(key: 'token', value: data.apiToken);
           loginFormKey.currentState!.save();
           userInfo.value = data;
-          user10 = data;
-          /*  String? route = await storage.read(key: 'route');
-          switch (route) {
-            case 'food':
-              route = Routes.bottomBar;
-              break;
-            case 'activity':
-              route = Routes.unlikeFood;
-              break;
-            case 'goal':
-              route = Routes.activity;
 
-              break;
-            case 'disease':
-              route = Routes.goal;
-              break;
-            case 'info':
-              route = Routes.disease;
-              break;
-            default:
-              route = Routes.info;
-              break;
-          } */
-
-          /*route*/ /*Routes.info*/
-          Get.offNamed(Routes.bottomBar);
+          data.firstName != null
+              ? {
+                  infoController.isAddInfo.value = true,
+                  infoController.user.value.firstName = data.firstName,
+                  infoController.user.value.lastName = data.lastName,
+                  infoController.user.value.gender = data.gender,
+                  infoController.user.value.height = data.height,
+                  infoController.user.value.birthDate = data.birthDate,
+                  infoController.initialInfo(),
+                  Get.offNamed(Routes.bottomBar),
+                }
+              : {
+                  Get.offNamed(Routes.info),
+                };
         } else {
           Get.snackbar('login', 'this is problem');
         }

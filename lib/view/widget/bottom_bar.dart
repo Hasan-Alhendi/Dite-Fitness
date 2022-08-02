@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/diet_controller.dart';
+import '../../control/controllers/info_controller.dart';
 import '../../theme.dart';
 import '../screens/diet_screen.dart';
 import '../screens/exercise_day_screen.dart';
@@ -21,14 +22,14 @@ class _BottomBarState extends State<BottomBar> {
   var screens = [
     DietScreen(),
     const ExerciseDayScreen(),
-    DietScreen(),
+    // DietScreen(),
     const InfoScreen(),
   ];
 
   final items = [
     const Icon(Icons.home, size: 30),
     const Icon(Icons.fitness_center, size: 30),
-    const Icon(Icons.bar_chart_rounded, size: 30),
+    // const Icon(Icons.bar_chart_rounded, size: 30),
     const Icon(Icons.account_circle, size: 30),
   ];
 

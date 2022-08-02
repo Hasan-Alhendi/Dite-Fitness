@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../control/controllers/info_controller.dart';
 import '../../control/controllers/training_exercises_controller.dart';
 import '../../theme.dart';
 import '../widget/appbar.dart';
@@ -14,6 +15,8 @@ class TrainingExercisesScreen extends GetView<TrainingExercisesController> {
   @override
   Widget build(BuildContext context) {
     var mq = MediaQuery.of(context);
+    InfoController infoController = Get.find();
+
     //var culomnSpace = 20.0;
     return Scaffold(
       appBar: customAppBar(
@@ -97,9 +100,25 @@ class TrainingExercisesScreen extends GetView<TrainingExercisesController> {
                                             'الرجاء تحديد عدد أيام اللعب',
                                             snackPosition: SnackPosition.BOTTOM,
                                           )
-                                        : controller.setTrainingExercise(
-                                            trainingExerciseId:
-                                                controller.selectedIndex.value);
+                                        : {
+                                            controller.setTrainingExercise(
+                                                trainingExerciseId: controller
+                                                    .selectedIndex.value),
+                                            infoController.isAddInfo.value =
+                                                true,
+                                            print(
+                                                'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'),
+                                            print(
+                                                'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'),
+                                            print(
+                                                'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'),
+                                            print(
+                                                'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'),
+                                            print(
+                                                'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'),
+                                            print(
+                                                'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'),
+                                          };
                                   }),
                             ],
                           );
