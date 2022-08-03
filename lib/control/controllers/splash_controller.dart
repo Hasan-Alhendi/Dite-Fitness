@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dite_fitness/control/controllers/info_controller.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
@@ -15,14 +16,17 @@ class SplashController extends GetxController {
   }
 
   var storage = const FlutterSecureStorage();
-
+  InfoController infoController = Get.find();
   @override
   void onReady() {
     //moveToNext();
     Future.delayed(const Duration(milliseconds: 2000), () async {
       var token = await storage.read(key: 'token');
       token != null
-          ? Get.offNamed(Routes.bottomBar)
+          ? {
+              Get.offNamed(Routes.login),
+              //infoController.isAddInfo.value = true,
+            }
           : Get.offNamed(Routes.login);
     });
 

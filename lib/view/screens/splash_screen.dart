@@ -15,7 +15,7 @@ class SplashScreen extends GetView<SplashController> {
   }
 
   initScreen(BuildContext context) {
-    AssetImage assetImage = const AssetImage("assets/splash.jpg");
+    AssetImage assetImage = const AssetImage("assets/splash.png");
     Image image = Image(
       image: assetImage,
       height: 200.0,

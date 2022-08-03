@@ -16,7 +16,7 @@ List<PieChartSectionData> getSections(/* int touchedIndex */) => data
         color: data.color,
         value: data.percent,
         title: '${data.percent}%',
-        radius: 35,
+        radius: 55,
         titleStyle: const TextStyle(
           fontSize: 11,
           fontWeight: FontWeight.bold,

@@ -39,8 +39,8 @@ class User {
     firstName = json['first_name'];
     lastName = json['last_name'];
     gender = json['gender'];
-    //birth_date = json['birth_date'];
-    // birth_date = DateTime.parse(json['birth_date'].toString());
+    // birthDate = json['birth_date'];
+    birthDate = DateTime.parse(json['birth_date'] ?? '1974-03-20 00:00:00.000');
 
     height = json['height'];
     apiToken = json['api_Token'];

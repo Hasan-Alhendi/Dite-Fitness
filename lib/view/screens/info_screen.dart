@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/info_controller.dart';
-import '../../routes.dart';
 import '../../theme.dart';
 import '../widget/appbar.dart';
 import '../widget/back_container.dart';
@@ -15,7 +14,6 @@ class InfoScreen extends GetView<InfoController> {
 
   @override
   Widget build(BuildContext context) {
-    // print(Get.arguments);
     var mq = MediaQuery.of(context);
     var culomnSpace = 20.0;
     return Scaffold(
@@ -27,7 +25,9 @@ class InfoScreen extends GetView<InfoController> {
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: Form(
-            key: controller.informationFormKey,
+            key: (controller.isAddInfo.value != true)
+                ? controller.informationFormKey
+                : controller.informationFormKey1,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -214,15 +214,13 @@ class InfoScreen extends GetView<InfoController> {
                                 label: "تأكيد",
                                 onPressed: () {
                                   controller.updateInfo();
-
-                                  // Get.toNamed(Routes.disease);
                                 });
                           } else {
                             return nextButton(
                                 label: "التالي",
                                 onPressed: () {
                                   controller.updateInfo();
-                                  //Get.toNamed(Routes.disease);
+                                  controller.isAddInfo.value = false;
                                 });
                           }
                         })

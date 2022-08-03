@@ -5,6 +5,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'control/bindings/binding.dart';
+import 'control/controllers/info_controller.dart';
+import 'control/controllers/login_controller.dart';
 import 'routes.dart';
 
 Future<void> main() async {
@@ -38,16 +40,23 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialBinding: Binding(),
-      initialRoute: Routes.splash,
-      getPages: Routes.routes,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        // primaryColor: Colors.teal,
-        // backgroundColor: Colors.teal,
-      ),
-    );
+    Get.put(LoginController());
+    Get.put(InfoController());
+
+    return GetBuilder<LoginController>(builder: (_) {
+      return GetBuilder<InfoController>(builder: (_) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          initialBinding: Binding(),
+          initialRoute: Routes.splash,
+          getPages: Routes.routes,
+          theme: ThemeData(
+            brightness: Brightness.dark,
+            // primaryColor: Colors.teal,
+            // backgroundColor: Colors.teal,
+          ),
+        );
+      });
+    });
   }
 }
