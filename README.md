@@ -24,4 +24,5 @@ This application helps you build a healthy body as it provides you with a diet w
 <img src="https://user-images.githubusercontent.com/72380459/183285218-9840437d-f46e-42f3-8e1a-7899c5729f3c.png" width="300" height="617" />
 <img src="https://user-images.githubusercontent.com/72380459/183285222-8fad655a-82de-4dab-8b7e-a4db24723679.png" width="300" height="617" />
 <img src="https://user-images.githubusercontent.com/72380459/183285228-052ac1a1-886d-4afc-b0d3-670a2fadb03a.png" width="300" height="617" />
-<img src="https://user-images.githubusercontent.com/72380459/183296225-84869de3-ad4e-4b76-afdd-af2996a898e0.png" width="300" height="617" />
+<img src="https://user-images.githubusercontent.com/72380459/183296956-9d8924bb-705a-4107-abb4-73c327bc8c49.png" width="300" height="617" />
+
