@@ -1,5 +1,6 @@
 This application helps you build a healthy body as it provides you with a diet with exercises.
-
+This application helps you build a healthy body as it provides you with a diet with exercises.
+This application helps you build a healthy body as it provides you with a diet with exercises.
 <img src="https://user-images.githubusercontent.com/72380459/183285152-c3bb4c65-c61d-4581-999a-f860205306a2.png" width="300" height="617" />
 <img src="https://user-images.githubusercontent.com/72380459/183285157-9f76800a-606e-4a41-9d6a-fab03eea6718.png" width="300" height="617" />
 <img src="https://user-images.githubusercontent.com/72380459/183285162-7d5cadcf-f46c-46e4-b164-be7bd996db4f.png" width="300" height="617" />
@@ -23,4 +24,4 @@ This application helps you build a healthy body as it provides you with a diet w
 <img src="https://user-images.githubusercontent.com/72380459/183285218-9840437d-f46e-42f3-8e1a-7899c5729f3c.png" width="300" height="617" />
 <img src="https://user-images.githubusercontent.com/72380459/183285222-8fad655a-82de-4dab-8b7e-a4db24723679.png" width="300" height="617" />
 <img src="https://user-images.githubusercontent.com/72380459/183285228-052ac1a1-886d-4afc-b0d3-670a2fadb03a.png" width="300" height="617" />
-![Frame 26](https://user-images.githubusercontent.com/72380459/183296225-84869de3-ad4e-4b76-afdd-af2996a898e0.png)
+<img src="https://user-images.githubusercontent.com/72380459/183296225-84869de3-ad4e-4b76-afdd-af2996a898e0.png" width="300" height="617" />
