@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../control/controllers/info_controller.dart';
 import '../../control/controllers/training_exercises_controller.dart';
 import '../../theme.dart';
 import '../widget/appbar.dart';
@@ -15,7 +14,7 @@ class TrainingExercisesScreen extends GetView<TrainingExercisesController> {
   @override
   Widget build(BuildContext context) {
     var mq = MediaQuery.of(context);
-    InfoController infoController = Get.find();
+    // InfoController infoController = Get.find();
 
     //var culomnSpace = 20.0;
     return Scaffold(
@@ -104,20 +103,8 @@ class TrainingExercisesScreen extends GetView<TrainingExercisesController> {
                                             controller.setTrainingExercise(
                                                 trainingExerciseId: controller
                                                     .selectedIndex.value),
-                                            infoController.isAddInfo.value =
-                                                true,
-                                            print(
-                                                'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'),
-                                            print(
-                                                'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'),
-                                            print(
-                                                'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'),
-                                            print(
-                                                'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'),
-                                            print(
-                                                'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'),
-                                            print(
-                                                'LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL'),
+                                            /*  infoController.isAddInfo.value =
+                                                true, */
                                           };
                                   }),
                             ],

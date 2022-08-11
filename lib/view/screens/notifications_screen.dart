@@ -161,7 +161,7 @@ class NotificationsScreen extends GetView<NotificationsController> {
                                           ListTileControlAffinity.leading,
                                       activeColor: Colors.blue,
                                       value: controller.wen.value,
-                                      title: Text('الأربعاء'),
+                                      title: const Text('الأربعاء'),
                                       onChanged: (value) {
                                         controller.wen.value = value!;
                                         if (controller.wen.value == true) {
@@ -177,7 +177,7 @@ class NotificationsScreen extends GetView<NotificationsController> {
                                           ListTileControlAffinity.leading,
                                       activeColor: Colors.blue,
                                       value: controller.thu.value,
-                                      title: Text('الخميس'),
+                                      title: const Text('الخميس'),
                                       onChanged: (value) {
                                         controller.thu.value = value!;
                                         if (controller.thu.value == true) {
@@ -193,12 +193,11 @@ class NotificationsScreen extends GetView<NotificationsController> {
                                           ListTileControlAffinity.leading,
                                       activeColor: Colors.blue,
                                       value: controller.fri.value,
-                                      title: Text('الجمعة'),
+                                      title: const Text('الجمعة'),
                                       onChanged: (value) {
                                         controller.fri.value = value!;
                                         if (controller.fri.value == true) {
                                           controller.dayList.add(5);
-                                          print(controller.dayList);
                                         } else {
                                           controller.dayList.remove(5);
                                         }
@@ -216,7 +215,7 @@ class NotificationsScreen extends GetView<NotificationsController> {
                                           ListTileControlAffinity.leading,
                                       activeColor: Colors.blue,
                                       value: controller.sat.value,
-                                      title: Text('السبت'),
+                                      title: const Text('السبت'),
                                       onChanged: (value) {
                                         controller.sat.value = value!;
                                         if (controller.sat.value == true) {
@@ -232,7 +231,7 @@ class NotificationsScreen extends GetView<NotificationsController> {
                                           ListTileControlAffinity.leading,
                                       activeColor: Colors.blue,
                                       value: controller.sun.value,
-                                      title: Text('الأحد'),
+                                      title: const Text('الأحد'),
                                       onChanged: (value) {
                                         controller.sun.value = value!;
                                         if (controller.sun.value == true) {
@@ -248,7 +247,7 @@ class NotificationsScreen extends GetView<NotificationsController> {
                                           ListTileControlAffinity.leading,
                                       activeColor: Colors.blue,
                                       value: controller.mon.value,
-                                      title: Text('الاثنين'),
+                                      title: const Text('الاثنين'),
                                       onChanged: (value) {
                                         controller.mon.value = value!;
                                         if (controller.mon.value == true) {
@@ -264,7 +263,7 @@ class NotificationsScreen extends GetView<NotificationsController> {
                                           ListTileControlAffinity.leading,
                                       activeColor: Colors.blue,
                                       value: controller.tus.value,
-                                      title: Text('الثلاثاء'),
+                                      title: const Text('الثلاثاء'),
                                       onChanged: (value) {
                                         controller.tus.value = value!;
                                         if (controller.tus.value == true) {

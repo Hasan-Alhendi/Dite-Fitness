@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -8,9 +10,10 @@ import '../../const.dart';
 import '../../theme.dart';
 import '../../view/widget/next_button.dart';
 import '../classes/assesement.dart';
+import '../classes/user_model.dart';
 
 class InfoServises {
-  static String url = Const.urlUser;
+  static String urlUser = Const.urlUser;
 
   static updateInfo({
     required apiToken,
@@ -22,7 +25,7 @@ class InfoServises {
     required weight,
   }) async {
     var response = await http.put(
-      Uri.parse('$url/add-personal-information'),
+      Uri.parse('$urlUser/add-personal-information'),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -42,7 +45,7 @@ class InfoServises {
     } else {
       Get.snackbar('خطأ', "تأكد من الاتصال بالانترنت");
       print(response.body);
-      print('$url/add-personal-information');
+      print('$urlUser/add-personal-information');
       print(response.statusCode);
       return;
     }
@@ -53,7 +56,7 @@ class InfoServises {
     required weight,
   }) async {
     var response = await http.post(
-      Uri.parse('$url/diet-assesement'),
+      Uri.parse('$urlUser/diet-assesement'),
       headers: {
         'Content-Type': 'application/json',
         'auth-token': '$apiToken',
@@ -90,6 +93,41 @@ class InfoServises {
       'تم تعديل الوزن بنجاح',
       snackPosition: SnackPosition.BOTTOM,
     );
+  }
+
+  static Future getUserInfo({required apiToken}) async {
+    User extractedUser = User(
+        id: null,
+        email: null,
+        firstName: null,
+        lastName: null,
+        gender: null,
+        birthDate: null,
+        height: null,
+        apiToken: null,
+        weight: null);
+
+    var response = await http.get(
+      Uri.parse('$urlUser/get-information-user'),
+      headers: {
+        'Content-Type': 'application/json',
+        //'Accept': 'application/json',
+        'auth-token': '$apiToken',
+      },
+    );
+
+    // print(response.statusCode);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Map<String, dynamic> valueMap = jsonDecode(response.body);
+
+      var mapUser = valueMap["user"];
+
+      User user = User.fromJson(mapUser);
+      extractedUser = user;
+      // return user;
+    }
+
+    return extractedUser;
   }
 
   /* static updateWeight({

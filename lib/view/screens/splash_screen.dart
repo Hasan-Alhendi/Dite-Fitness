@@ -7,6 +7,7 @@ class SplashScreen extends GetView<SplashController> {
   const SplashScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     SplashController dd = Get.find();
 
     return Scaffold(

@@ -13,14 +13,15 @@ import '../../routes.dart';
 import '../../theme.dart';
 
 class ExerciseScreen extends GetView<ExerciseController> {
-  ExerciseScreen({Key? key, required mediaUrl}) : super(key: key);
-  String? mediaUrl;
+  const ExerciseScreen({Key? key /* , required mediaUrl */}) : super(key: key);
+  //String? mediaUrl;
 
   @override
   Widget build(BuildContext context) {
     TrainingExercisesController trainingExercisesController = Get.find();
     List<Exercise> listExercises = trainingExercisesController.exerciseList;
-    var index = Get.arguments;
+    var index = 0;
+    // var pathIndex = 0;
     ExerciseDetailscontroller exerciseDetailscontroller = Get.find();
     return YoutubePlayerBuilder(
       builder: (context, player) => Scaffold(
@@ -41,6 +42,7 @@ class ExerciseScreen extends GetView<ExerciseController> {
                           listExercises[index].description!;
                       Get.toNamed(
                         Routes.exerciseDetailsScreen,
+                        arguments: index,
                       );
                     },
                     icon: const Icon(Icons.info_outline)),
@@ -53,10 +55,9 @@ class ExerciseScreen extends GetView<ExerciseController> {
                     onPressed: () {
                       index == 0 ? index = 0 : index--;
 
-                      String
-                          url = /*listExercises[index]
-                          .videoPath! */
-                          "https://youtu.be/71zT3uNt5lw";
+                      String url =
+                          trainingExercisesController.exercisePath[index];
+
                       controller.youtubePlayerController
                           .load(YoutubePlayer.convertUrlToId(url)!);
                     },
@@ -66,12 +67,16 @@ class ExerciseScreen extends GetView<ExerciseController> {
                     )),
                 IconButton(
                     onPressed: () {
-                      index == listExercises.length - 1
-                          ? index = listExercises.length - 1
+                      index ==
+                              trainingExercisesController.exercisePath.length -
+                                  1
+                          ? index =
+                              trainingExercisesController.exercisePath.length -
+                                  1
                           : index++;
 
-                      String
-                          url = /*listExercises[index].videoPath!*/ "https://www.youtube.com/watch?v=pFuZJJABbkU&list=PLjDRJj7TtsBONMSzbtDwjUkvWUHJfc-Bn&index=3&ab_channel=Fitness";
+                      String url = trainingExercisesController.exercisePath[
+                          index]; /*"https://www.youtube.com/watch?v=pFuZJJABbkU&list=PLjDRJj7TtsBONMSzbtDwjUkvWUHJfc-Bn&index=3&ab_channel=Fitness";*/
                       controller.youtubePlayerController
                           .load(YoutubePlayer.convertUrlToId(url)!);
                     },

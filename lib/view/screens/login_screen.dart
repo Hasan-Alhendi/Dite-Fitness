@@ -147,15 +147,15 @@ class LoginScreen extends GetView<LoginController> {
                     }),
                   ),
                   const SizedBox(height: 10),
-                  Align(
+                  /* Align(
                     alignment: Alignment.centerRight,
                     child: Text(
                       'تسجيل الدخول بواسطة',
                       style: body2Style,
                     ),
-                  ),
+                  ), */
                   const SizedBox(height: 10),
-                  Row(
+                  /*  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -165,6 +165,7 @@ class LoginScreen extends GetView<LoginController> {
                           width: 48, height: 48, fit: BoxFit.cover),
                     ],
                   ),
+ */
                   const SizedBox(height: 10),
                   Text(
                     'ليس لدي حساب؟',

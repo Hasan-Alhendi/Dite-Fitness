@@ -1,4 +1,3 @@
-import 'package:dite_fitness/control/controllers/login_controller.dart';
 import 'package:dite_fitness/model/classes/user_model.dart';
 import 'package:flutter/Material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -9,12 +8,13 @@ import '../../routes.dart';
 
 class InfoController extends GetxController {
   var isLoding = false.obs;
-  var isLoading = false.obs;
+
+  var isLoading = true.obs;
   var isWeightLoding = false.obs;
   var route = ''.obs;
   var selectedDate = DateTime.now().obs;
   RxInt selectedIndex = 0.obs;
-  var isAddInfo = false.obs;
+  // var isAddInfo = false.obs;
   final storage = const FlutterSecureStorage();
 
   GlobalKey<FormState> informationFormKey = GlobalKey<FormState>();
@@ -36,8 +36,10 @@ class InfoController extends GetxController {
           gender: null,
           birthDate: null,
           height: null,
-          apiToken: null)
+          apiToken: null,
+          weight: null)
       .obs;
+
   @override
   void onInit() {
     routeStorage();
@@ -46,9 +48,8 @@ class InfoController extends GetxController {
     heightController = TextEditingController();
     birthDateController = TextEditingController();
     wightController = TextEditingController();
-    print(
-        '___________________________________loginController.user10?.email___________________________________');
-    //print(loginController.user10?.email);
+
+    // getUserInfo();
 
     super.onInit();
   }
@@ -68,16 +69,50 @@ class InfoController extends GetxController {
     route.value = (await storage.read(key: 'route') ?? '');
   }
 
-  initialInfo() {
-    firstNameController.text = user.value.firstName!;
-    lastNameController.text = user.value.lastName!;
-    heightController.text = user.value.height!.toString();
-    birthDateController.text =
-        (DateTime.now().year - user.value.birthDate!.year).toString();
-    wightController.text = '10';
-    selectedIndex.value = (user.value.gender == 'ذكر') ? 1 : 2;
+  addUserInfo() async {
+    const token = FlutterSecureStorage();
+    String? apiToken = await token.read(key: 'token');
+    // bool isValidate = informationFormKey.currentState!.validate();
+    //if (isValidate) {
+    isLoding.value = true; //  isLoding(true);
+    try {
+      var res = await InfoServises.updateInfo(
+        apiToken: apiToken,
+        birthDate: /*birthDateController
+              .text*/
+            selectedDate.value.toIso8601String(),
+        firstName: firstNameController.text,
+        gender: selectedIndex.value == 1
+            ? 'ذكر'
+            : (selectedIndex.value == 2 ? 'انثى' : ''),
+        height: heightController.text,
+        lastName: lastNameController.text,
+        weight: wightController.text,
+      );
+
+      informationFormKey.currentState!.save();
+
+      // await storage.write(key: 'route', value: 'info');
+      if (res == null) {
+        return;
+      } else {
+        //   if (isAddInfo.value == false) {
+        Get.toNamed(Routes.disease);
+        /* } else {
+          Get.snackbar(
+            '',
+            'تم تعديل بياناتك الشخصية',
+            // snackPosition: SnackPosition.BOTTOM,
+          );
+          return;
+        } */
+      }
+    } finally {
+      isLoding(false);
+    }
   }
 
+  //}
   updateInfo() async {
     const token = FlutterSecureStorage();
     String? apiToken = await token.read(key: 'token');
@@ -98,24 +133,23 @@ class InfoController extends GetxController {
         lastName: lastNameController.text,
         weight: wightController.text,
       );
-      print('sel/////////////////////////////////////////////////////');
-      print(selectedDate.value.toIso8601String());
-      informationFormKey.currentState!.save();
+
+      informationFormKey1.currentState!.save();
 
       // await storage.write(key: 'route', value: 'info');
       if (res == null) {
         return;
       } else {
-        if (isAddInfo.value == false) {
+        /*  if (isAddInfo.value == false) {
           Get.toNamed(Routes.disease);
-        } else {
-          Get.snackbar(
-            '',
-            'تم تعديل بياناتك الشخصية',
-            // snackPosition: SnackPosition.BOTTOM,
-          );
-          return;
-        }
+        } else { */
+        Get.snackbar(
+          '',
+          'تم تعديل بياناتك الشخصية',
+          // snackPosition: SnackPosition.BOTTOM,
+        );
+        return;
+        //}
       }
     } finally {
       isLoding(false);
@@ -130,6 +164,29 @@ class InfoController extends GetxController {
       String? apiToken = await token.read(key: 'token');
       await InfoServises.updateWeight(
           apiToken: apiToken, weight: wightController.text);
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  initialInfo() {
+    firstNameController.text = user.value.firstName!;
+    lastNameController.text = user.value.lastName!;
+    heightController.text = user.value.height!.toString();
+    birthDateController.text =
+        (DateTime.now().year - user.value.birthDate!.year).toString();
+    wightController.text = user.value.weight!.toString();
+    selectedIndex.value = (user.value.gender == 'ذكر') ? 1 : 2;
+  }
+
+  getUserInfo() async {
+    try {
+      isLoading(true);
+      const apiToken = FlutterSecureStorage();
+      String? x = await apiToken.read(key: 'token');
+      user.value = await InfoServises.getUserInfo(apiToken: x);
+
+      initialInfo();
     } finally {
       isLoading(false);
     }

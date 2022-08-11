@@ -159,7 +159,7 @@ class RegisterScreen extends GetView<RegisterController> {
                     }),
                   ),
                   const SizedBox(height: 10),
-                  Align(
+                  /*    Align(
                     alignment: Alignment.centerRight,
                     child: Text(
                       'إنشاء حساب بواسطة',
@@ -177,6 +177,7 @@ class RegisterScreen extends GetView<RegisterController> {
                           width: 48, height: 48, fit: BoxFit.cover),
                     ],
                   ),
+ */
                   const SizedBox(height: 10),
                   Text(
                     'لدي حساب بالفعل',

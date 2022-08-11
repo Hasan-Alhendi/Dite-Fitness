@@ -25,9 +25,10 @@ class InfoScreen extends GetView<InfoController> {
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: Form(
-            key: (controller.isAddInfo.value != true)
-                ? controller.informationFormKey
-                : controller.informationFormKey1,
+            key: /* (controller.isAddInfo.value != true)
+                ?  */
+                controller.informationFormKey,
+            //  : controller.informationFormKey1,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -208,6 +209,7 @@ class InfoScreen extends GetView<InfoController> {
                         SizedBox(
                           height: culomnSpace,
                         ),
+                        /* 
                         Obx(() {
                           if (controller.isAddInfo.value == true) {
                             return nextButton(
@@ -223,7 +225,13 @@ class InfoScreen extends GetView<InfoController> {
                                   controller.isAddInfo.value = false;
                                 });
                           }
-                        })
+                        }), */
+                        nextButton(
+                            label: "التالي",
+                            onPressed: () {
+                              controller.addUserInfo();
+                              //controller.isAddInfo.value = true;
+                            })
                       ],
                     ),
                   ),

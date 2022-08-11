@@ -1,4 +1,4 @@
-import 'package:dite_fitness/control/controllers/info_controller.dart';
+//import 'package:dite_fitness/control/controllers/info_controller.dart';
 import 'package:dite_fitness/model/classes/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -18,7 +18,8 @@ class LoginController extends GetxController {
           gender: null,
           birthDate: null,
           height: null,
-          apiToken: null)
+          apiToken: null,
+          weight: null)
       .obs;
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>(debugLabel: 'login');
   late TextEditingController emailController, passowrdController;
@@ -54,15 +55,20 @@ class LoginController extends GetxController {
     }
   } */
   doLogOut() async {
+    const token = FlutterSecureStorage();
+    String? apiToken = await token.read(key: 'token');
+    await AuthServices.logOUt(apiToken: apiToken);
     await storage.deleteAll();
-    infoController.isAddInfo.value = false;
+    // infoController.isAddInfo.value = false;
     // Get.delete<LoginController>();
-    Get.delete<InfoController>();
-    Get.offAndToNamed(Routes.splash);
+    //Get.delete();
+    Get.deleteAll();
+
+    Get.offNamed(Routes.splash);
   }
 
-  var xd = Get.put(InfoController());
-  InfoController infoController = Get.find();
+  //var xd = Get.put(InfoController());
+  //InfoController infoController = Get.find();
 
   doLogin() async {
     bool isValidate = loginFormKey.currentState!.validate();
@@ -76,17 +82,20 @@ class LoginController extends GetxController {
           await storage.write(key: 'token', value: data.apiToken);
           loginFormKey.currentState!.save();
           userInfo.value = data;
-
+          var apiToken = await storage.read(key: 'token');
+          AuthServices.storToken(apiToken: apiToken);
           data.firstName != null
               ? {
-                  infoController.isAddInfo.value = true,
-                  infoController.user.value.firstName = data.firstName,
-                  infoController.user.value.lastName = data.lastName,
-                  infoController.user.value.gender = data.gender,
-                  infoController.user.value.height = data.height,
-                  infoController.user.value.birthDate = data.birthDate,
-                  infoController.initialInfo(),
+                  // infoController.isAddInfo.value = true,
+                  //   infoController.user.value.firstName = data.firstName,
+                  //   infoController.user.value.lastName = data.lastName,
+                  //   infoController.user.value.gender = data.gender,
+                  //   infoController.user.value.height = data.height,
+                  //   infoController.user.value.weight = data.weight,
+                  //   infoController.user.value.birthDate = data.birthDate,
+                  //   infoController.initialInfo(),
                   Get.offNamed(Routes.bottomBar),
+                  // infoController.getUserInfo(),
                 }
               : {
                   Get.offNamed(Routes.info),

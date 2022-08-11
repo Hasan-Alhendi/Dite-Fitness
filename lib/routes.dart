@@ -5,6 +5,7 @@ import 'view/screens/activities_screen.dart';
 import 'view/screens/alternatives_screen.dart';
 import 'view/screens/diet_screen.dart';
 import 'view/screens/disease_screen.dart';
+import 'view/screens/edit_info_screen.dart';
 import 'view/screens/exercis_details_screen.dart';
 import 'view/screens/exercise_day_screen.dart';
 import 'view/screens/exercise_list_screen.dart';
@@ -25,6 +26,7 @@ class Routes {
   static const login = '/login';
   static const register = '/register';
   static const info = '/info';
+  static const editInfo = '/editInfo';
   static const goal = '/goal';
   static const diet = '/diet';
   static const meal = '/meal';
@@ -46,6 +48,8 @@ class Routes {
     GetPage(
         name: register, page: () => const RegisterScreen(), binding: Binding()),
     GetPage(name: info, page: () => const InfoScreen(), binding: Binding()),
+    GetPage(
+        name: editInfo, page: () => const EditInfoScreen(), binding: Binding()),
     GetPage(name: goal, page: () => const GoalScreen(), binding: Binding()),
     GetPage(name: diet, page: () => DietScreen(), binding: Binding()),
     GetPage(
@@ -78,7 +82,7 @@ class Routes {
         binding: Binding()),
     GetPage(
         name: exerciseScreen,
-        page: () => ExerciseScreen(mediaUrl: ''),
+        page: () => const ExerciseScreen(/* mediaUrl: '' */),
         binding: Binding()),
     GetPage(
         name: exerciseDetailsScreen,

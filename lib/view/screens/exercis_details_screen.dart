@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../control/controllers/exercise_details_controller.dart';
+import '../../control/controllers/training_exercises_controller.dart';
 import '../../theme.dart';
 import '../widget/appbar.dart';
 
@@ -10,6 +11,8 @@ class ExerciseDetailsScreen extends GetView<ExerciseDetailscontroller> {
 
   @override
   Widget build(BuildContext context) {
+    TrainingExercisesController trainingExercisesController = Get.find();
+    var index = Get.arguments;
     return Scaffold(
       appBar: customAppBar(
         title: 'طريقة لعب التمرين',
@@ -29,7 +32,7 @@ class ExerciseDetailsScreen extends GetView<ExerciseDetailscontroller> {
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20)),
                       child: Image.asset(
-                        'assets/552.png',
+                        /*  'assets/552.png' */ 'assets/muscleImage/${trainingExercisesController.exerciseList[index].musculImage}',
                         fit: BoxFit.fill,
                       ),
                     ),
