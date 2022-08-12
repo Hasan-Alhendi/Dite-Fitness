@@ -36,7 +36,7 @@ class DiseasesController extends GetxController {
     var res =
         await DiseaseService.setDiseases(apiToken: x, diseaseId: diseasesId);
     await storage.write(key: 'route', value: 'disease');
-    print(res);
+    //print(res);
     if (res == null) {
       return;
     } else {

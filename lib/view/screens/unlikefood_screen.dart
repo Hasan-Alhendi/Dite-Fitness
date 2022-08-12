@@ -30,40 +30,46 @@ class UnlikeFoodScreen extends GetView<FoodController> {
               if (controller.isLoading.value) {
                 return const Center(child: CircularProgressIndicator());
               } else {
-                return Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: GridView.builder(
-                      itemCount: controller.foods.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              childAspectRatio: 3 / 2,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10),
-                      itemBuilder: (BuildContext context, int index) => Obx(
-                          () => customRadio(
-                              label: controller.foods[index].foodName!,
-                              index: index,
-                              color: controller.unlikeFoodsList
-                                      .contains(controller.foods[index].foodId)
-                                  ? buttonAndSelectedItem
-                                  : textButtonColor,
-                              onPressed: () {
-                                controller.unlikeFoodsList.contains(
+                return SizedBox(
+                  height: 480,
+                  child: Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: GridView.builder(
+                        itemCount: controller.foods.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                childAspectRatio: 3 / 2,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10),
+                        itemBuilder: (BuildContext context, int index) => Obx(
+                            () => customRadio(
+                                label: controller.foods[index].foodName!,
+                                index: index,
+                                color: controller.unlikeFoodsList.contains(
                                         controller.foods[index].foodId)
-                                    ? controller.unlikeFoodsList
-                                        .remove(controller.foods[index].foodId!)
-                                    : controller.unlikeFoodsList
-                                        .add(controller.foods[index].foodId!);
-                              },
-                              circular: 10,
-                              style: button2Style)),
+                                    ? buttonAndSelectedItem
+                                    : textButtonColor,
+                                onPressed: () {
+                                  controller.unlikeFoodsList.contains(
+                                          controller.foods[index].foodId)
+                                      ? controller.unlikeFoodsList.remove(
+                                          controller.foods[index].foodId!)
+                                      : controller.unlikeFoodsList
+                                          .add(controller.foods[index].foodId!);
+                                },
+                                circular: 10,
+                                style: button2Style)),
+                      ),
                     ),
                   ),
                 );
               }
             }),
+            const SizedBox(
+              height: 25,
+            ),
             nextButton(
                 label: "التالي",
                 onPressed: () {

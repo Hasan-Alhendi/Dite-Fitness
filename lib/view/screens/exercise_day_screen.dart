@@ -38,15 +38,12 @@ class ExerciseDayScreen extends GetView<TrainingExercisesController> {
                             controller.getSpecificExercises(
                                 id: controller
                                     .daysList[index].trainingExerciseDayId);
+
                             Get.toNamed(Routes.exerciseListScreen);
                           },
                           child: ListTile(
                             contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 16),
-                            /* subtitle: Text(
-                              'dsfsfsf',
-                              style: body2Style,
-                            ), */
                             title: Text(
                               controller.daysList[index].dayName!,
                               style: bodyStyle,

@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../../const.dart';
@@ -81,6 +84,42 @@ class AuthServices {
       } else {
         Get.snackbar('خطأ', "اسم المستخدم أو كلمة المرور غير صالحة");
       }
+    }
+  }
+
+  static logOUt({required apiToken}) async {
+    var response = await client.post(
+      Uri.parse("$url/logout"),
+      headers: {
+        'Content-Type': 'application/json',
+        //'Accept': 'application/json',
+        'auth-token': '$apiToken',
+      },
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {}
+  }
+
+  static storToken({required apiToken}) async {
+    var devToken = await FirebaseMessaging.instance.getToken();
+    var response = await client.post(
+      Uri.parse("$url/store-token"),
+      headers: {
+        'Content-Type': 'application/json',
+        //'Accept': 'application/json',
+        'auth-token': '$apiToken',
+      },
+      body: jsonEncode(<String, dynamic>{'token': devToken}),
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print(response.body);
+      print(response.body);
+      print(response.body);
+      print(response.body);
+      print(response.body);
+      print(response.body);
+      print(response.body);
     }
   }
 }

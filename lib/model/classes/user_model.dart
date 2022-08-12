@@ -6,6 +6,7 @@ class User {
   String? gender;
   DateTime? birthDate;
   int? height;
+  int? weight;
 
   String? apiToken;
 
@@ -17,6 +18,7 @@ class User {
     required this.gender,
     required this.birthDate,
     required this.height,
+    required this.weight,
     required this.apiToken,
   });
 
@@ -43,6 +45,7 @@ class User {
     birthDate = DateTime.parse(json['birth_date'] ?? '1974-03-20 00:00:00.000');
 
     height = json['height'];
+    weight = json['weight'];
     apiToken = json['api_Token'];
   }
 

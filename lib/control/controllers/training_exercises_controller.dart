@@ -15,6 +15,16 @@ class TrainingExercisesController extends GetxController {
   var daysList = <Day>[].obs;
   var exerciseList = <Exercise>[].obs;
   var selectedIndex = 99.obs;
+  var exercisePath = [].obs;
+
+  exercisePathFun() {
+    exercisePath.value = [];
+    for (int i = 0; i < exerciseList.length; i++) {
+      exercisePath.add(exerciseList[i].videoPath);
+      // print(exercisePath);
+      // print(i);
+    }
+  }
 
   @override
   void onInit() {
@@ -55,6 +65,7 @@ class TrainingExercisesController extends GetxController {
       String? x = await apiToken.read(key: 'token');
       exerciseList.value = await TrainingExercisesServices.getSpecificExercises(
           apiToken: x, id: id);
+      exercisePathFun();
     } finally {
       isLoading(false);
     }
@@ -69,7 +80,7 @@ class TrainingExercisesController extends GetxController {
     if (res == null) {
       return;
     } else {
-      Get.toNamed(Routes.bottomBar);
+      Get.offAllNamed(Routes.bottomBar);
     }
   }
 }

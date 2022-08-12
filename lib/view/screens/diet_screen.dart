@@ -321,34 +321,4 @@ class DietScreen extends GetView<DietController> {
           }),
     );
   }
-
-  /*  showDialogBox1() async {
-    return await Get.defaultDialog(
-      backgroundColor: container,
-      title: 'المعلومات المتعلقة بالمستخدم',
-      content: Column(
-        children: [
-          Text(infoController.assesment.value.oldWeightValue.toString() +
-              " :الوزن القديم"),
-          Text(infoController.assesment.value.newWeightValue.toString() +
-              " :الوزن الجديد"),
-          Text(infoController.assesment.value.rank.toString() +
-              " :نسبة الاستفادة"),
-        ],
-      ),
-      confirm: nextButton(
-          label: 'تم',
-          onPressed: () {
-           
-            Get.back();
-          }),
-    );
-    /* return Obx(() {
-      if (infoController.isLoading.value == true) {
-        return const CircularProgressIndicator();
-      } else {
-        return n;
-      }
-    }); */
-  } */
 }

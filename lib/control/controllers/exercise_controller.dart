@@ -4,17 +4,19 @@
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import 'package:get/get.dart';
+
+import 'training_exercises_controller.dart';
 //import 'package:video_player/video_player.dart';
 
 class ExerciseController extends GetxController {
   late YoutubePlayerController youtubePlayerController;
+  TrainingExercisesController trainingExercisesController = Get.find();
 
   @override
   void onInit() {
-    String? url =
-        'https://www.youtube.com/watch?v=pFuZJJABbkU&list=PLjDRJj7TtsBONMSzbtDwjUkvWUHJfc-Bn&index=3&ab_channel=Fitness';
+    String? url = trainingExercisesController.exercisePath[0];
     youtubePlayerController = YoutubePlayerController(
-      initialVideoId: YoutubePlayer.convertUrlToId(url)!,
+      initialVideoId: YoutubePlayer.convertUrlToId(url!)!,
       flags: const YoutubePlayerFlags(
         controlsVisibleAtStart: true,
         autoPlay: true,

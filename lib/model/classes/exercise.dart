@@ -4,8 +4,8 @@ class Exercise {
   double? time;
   String? exerciseName;
   String? videoPath;
-  String? externalImage;
-  String? internalImage;
+  String? exerciseImage;
+  // String? internalImage;
   String? musculImage;
   String? description;
   Exercise({
@@ -14,8 +14,8 @@ class Exercise {
     required this.time,
     required this.exerciseName,
     required this.videoPath,
-    required this.externalImage,
-    required this.internalImage,
+    required this.exerciseImage,
+    // required this.internalImage,
     required this.musculImage,
     required this.description,
   });
@@ -27,8 +27,8 @@ class Exercise {
       'time': time,
       'exercise_name': exerciseName,
       'video_path': videoPath,
-      'external_image': externalImage,
-      'enternal_image': internalImage,
+      'exercise_image': exerciseImage,
+      //'enternal_image': internalImage,
       'muscle_image': musculImage,
       'description': description,
     };
@@ -40,8 +40,8 @@ class Exercise {
     time = map['time']?.toDouble();
     exerciseName = map['exercise_name'];
     videoPath = map['video_path'];
-    externalImage = map['external_image'];
-    internalImage = map['enternal_image'];
+    exerciseImage = map['exercise_image'];
+    //internalImage = map['enternal_image'];
     musculImage = map['muscle_image'];
     description = map['description'];
   }
